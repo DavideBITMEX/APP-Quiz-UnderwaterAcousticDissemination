@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OceanQuiz 🌊</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Language toggle — always visible -->
+  <button id="lang-btn" class="lang-btn" onclick="App.toggleLang()">🇫🇷 FR</button>
+
+  <!-- Main render target -->
+  <div id="app"></div>
+
+  <!-- Deep-sea background particles -->
+  <div class="seabed" aria-hidden="true">
+    <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+    <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+    <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+    <div class="wave-row">
+      <div class="wave w1"></div>
+      <div class="wave w2"></div>
+    </div>
+  </div>
+
+  <!-- JS files (order matters) -->
+  <script src="js/i18n.js"></script>
+  <script src="js/questions.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
