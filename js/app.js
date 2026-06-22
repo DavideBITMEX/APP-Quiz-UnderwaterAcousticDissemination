@@ -17,6 +17,21 @@ const App = (() => {
   function zoomIn()  { zoomLevel = Math.min(1.4, +(zoomLevel + 0.1).toFixed(1)); document.documentElement.style.zoom = zoomLevel; }
   function zoomOut() { zoomLevel = Math.max(0.7, +(zoomLevel - 0.1).toFixed(1)); document.documentElement.style.zoom = zoomLevel; }
 
+  /* ── Theme (dark / light) ──────────────────────────────── */
+  const LS_THEME = 'oq_theme';
+  let theme = 'dark';
+
+  function toggleTheme() {
+    theme = theme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem(LS_THEME, theme);
+    applyTheme();
+  }
+  function applyTheme() {
+    document.documentElement.setAttribute('data-theme', theme);
+    const btn = document.getElementById('theme-btn');
+    if (btn) btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+  }
+
   /* ── Leaderboard tab ───────────────────────────────────── */
   let lbTab = 'mixed'; // Mixed shown first
   function switchLbTab(tab) { lbTab = tab; if (state.screen === 'leaderboard') render(); }
@@ -36,6 +51,8 @@ const App = (() => {
   /* ── Boot ──────────────────────────────────────────────── */
   function init() {
     I18n.setLang(localStorage.getItem(LS_LANG) || 'en');
+    theme = localStorage.getItem(LS_THEME) || 'dark';
+    applyTheme();
     updateLangBtn();
     render();
   }
@@ -163,6 +180,15 @@ const App = (() => {
     saveScore({ name, score: state.score, total, pct, category: state.category, ts: Date.now() });
     state.screen = 'result';
     render();
+  }
+
+  function abandonQuiz() {
+    // Score is NOT saved when the user quits
+    if (confirm(I18n.t('abandon_confirm'))) {
+      stopAudio();
+      state = { ...state, screen: 'category', qIndex: 0, score: 0, answers: [] };
+      render();
+    }
   }
 
   /* ── Render dispatcher ──────────────────────────────────── */
@@ -304,8 +330,13 @@ const App = (() => {
       <div class="quiz-screen">
         <div class="quiz-card card">
           <div class="quiz-top">
-            <span class="qnum">${I18n.t('question_label')} ${num} ${I18n.t('of_label')} ${tot}</span>
-            <span id="score-pill" class="score-pill">${I18n.t('score_label')}: ${state.score}</span>
+            <div class="quiz-top-left">
+              <span class="qnum">${I18n.t('question_label')} ${num} ${I18n.t('of_label')} ${tot}</span>
+            </div>
+            <div class="quiz-top-right">
+              <span id="score-pill" class="score-pill">${I18n.t('score_label')}: ${state.score}</span>
+              <button class="abandon-btn" onclick="App.abandonQuiz()">${I18n.t('abandon_btn')}</button>
+            </div>
           </div>
           <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
           ${renderMedia(q, lang)}
@@ -344,7 +375,6 @@ const App = (() => {
     const lang  = I18n.getLang();
     const total = state.questions.length * PTS_PER_Q;
     const pct   = Math.round((state.score / total) * 100);
-    const msg   = pct===100?I18n.t('result_perfect'):pct>=80?I18n.t('result_great'):pct>=60?I18n.t('result_good'):pct>=40?I18n.t('result_ok'):I18n.t('result_low');
     const C     = 326.73;
     const color = pct===100?'#a3e635':pct>=60?'#38bdf8':'#f472b6';
 
@@ -372,11 +402,11 @@ const App = (() => {
               <text x="60" y="72" text-anchor="middle" class="ring-sub">${state.score}/${total} ${I18n.t('pts')}</text>
             </svg>
           </div>
-          <p class="result-msg">${msg}</p>
+          <p class="result-invite">${I18n.t('result_invite')}</p>
           <div class="btn-group">
-            <button class="btn btn-primary" onclick="App.startQuiz('${state.category}')">${I18n.t('btn_play_again')}</button>
+            <button class="btn btn-primary" onclick="App.goLeaderboard()">${I18n.t('btn_leaderboard2')}</button>
+            <button class="btn btn-outline" onclick="App.startQuiz('${state.category}')">${I18n.t('btn_play_again')}</button>
             <button class="btn btn-outline" onclick="App.goCategory()">${I18n.t('btn_categories')}</button>
-            <button class="btn btn-outline" onclick="App.goLeaderboard()">${I18n.t('btn_leaderboard2')}</button>
             <button class="btn btn-outline" onclick="App.goHome()">🏠 Home</button>
           </div>
           <details class="review">
@@ -452,9 +482,9 @@ const App = (() => {
 
   /* ── Public API ─────────────────────────────────────────── */
   return {
-    init, toggleLang, updateName,
+    init, toggleLang, updateName, toggleTheme,
     goHome, goWelcome, goCategory, startQuiz, goLeaderboard,
-    selectOption, nextQuestion, clearScores,
+    selectOption, nextQuestion, clearScores, abandonQuiz,
     toggleAudio, switchLbTab,
     zoomIn, zoomOut,
   };
