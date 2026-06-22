@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,16 +16,17 @@
        └──────────────────────────────────────────────────────────────┘ -->
   <header id="site-header">
     <div class="hdr-logos">
-      <img src="assets/images/LMA.png"         class="hdr-logo" alt="Lab logo"         onerror="this.style.display='none'">
-      <img src="assets/images/cnrs.png" class="hdr-logo" alt="Institution logo" onerror="this.style.display='none'">
+      <img src="assets/images/LMA.png"  class="hdr-logo" alt="Lab logo"         onerror="this.style.display='none'">  <!-- ★ -->
+      <img src="assets/images/cnrs.png" class="hdr-logo" alt="Institution logo" onerror="this.style.display='none'">  <!-- ★ -->
     </div>
     <div class="hdr-center">
-      <span class="hdr-appname">Learn by playing · Underwater Acoustics & Bioacoustics</span>   <!-- ★ app name -->
-      <span class="hdr-tagline">Fête de la Science 2026 &nbsp;·&nbsp; Laboratoire de Mechanique et d'Acoustique</span>  <!-- ★ event & lab -->
-      <span class="hdr-credit">App created by Davide Bittelli</span>  <!-- ★ your name -->
+      <span class="hdr-appname">Learn by playing · Underwater Acoustics &amp; Bioacoustics</span>  <!-- ★ -->
+      <span class="hdr-tagline">Fête de la Science 2026 &nbsp;·&nbsp; Laboratoire de Mécanique et d'Acoustique</span>  <!-- ★ -->
+      <span class="hdr-credit">App created by Davide Bittelli</span>  <!-- ★ -->
     </div>
     <div class="hdr-controls">
-      <button id="lang-btn" class="lang-btn" onclick="App.toggleLang()">🇫🇷 FR</button>
+      <button id="theme-btn" class="zoom-btn" onclick="App.toggleTheme()" title="Light / Dark mode">☀️</button>
+      <button id="lang-btn"  class="lang-btn" onclick="App.toggleLang()">🇫🇷 FR</button>
       <div class="zoom-btns">
         <button class="zoom-btn" onclick="App.zoomOut()" title="Zoom out">−</button>
         <button class="zoom-btn" onclick="App.zoomIn()"  title="Zoom in">+</button>
@@ -38,25 +39,24 @@
 
   <!-- ┌──────────────────────────────────────────────────────────────┐
        │  FIXED FOOTER — EU / project funding strip                  │
-       │  Place your logos in assets/images/ — missing ones hide     │
-       │  automatically. Edit the funding text below (★).           │
+       │  Place logos in assets/images/ — missing ones auto-hide     │
        └──────────────────────────────────────────────────────────────┘ -->
   <footer id="site-footer">
-    <!-- EU logo needs a white background so its dark elements are visible -->
+    <!-- "Funded by the European Union" logo — displayed on white pill (EU brand guidelines) -->
     <div class="eu-logo-wrap">
-      <img src="assets/images/logo-eu.png" class="eu-logo" alt="European Commission logo"
-           onerror="this.parentElement.style.display='none'">  <!-- ★ EU logo -->
+      <img src="assets/images/logo-eu.png" class="eu-logo" alt="Funded by the European Union"
+           onerror="this.parentElement.style.display='none'">
     </div>
     <span class="ftr-divider"></span>
-    <p class="ftr-text">  <!-- ★ funding statement -->
+    <p class="ftr-text">
       Funded by the European Union's Horizon Europe — Marie Skłodowska-Curie Actions
       &nbsp;·&nbsp; <strong>BETTER</strong> (GA&nbsp;101169348)
       &nbsp;·&nbsp; <strong>SEASOUNDS</strong> (GA&nbsp;101119769)
     </p>
     <span class="ftr-divider"></span>
     <div class="ftr-project-logos">
-      <img src="assets/images/logo-seasounds.png" class="ftr-logo" alt="SEASOUNDS logo" onerror="this.style.display='none'"> <!-- ★ SEASOUNDS first -->
-      <img src="assets/images/logo-better.png"    class="ftr-logo" alt="BETTER logo"   onerror="this.style.display='none'"> <!-- ★ then BETTER -->
+      <img src="assets/images/logo-seasounds.png" class="ftr-logo" alt="SEASOUNDS" onerror="this.style.display='none'">
+      <img src="assets/images/logo-better.png"    class="ftr-logo" alt="BETTER"   onerror="this.style.display='none'">
     </div>
   </footer>
 
