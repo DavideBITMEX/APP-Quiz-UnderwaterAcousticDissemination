@@ -42,7 +42,11 @@
        │  automatically. Edit the funding text below (★).           │
        └──────────────────────────────────────────────────────────────┘ -->
   <footer id="site-footer">
-    <img src="assets/images/logo-eu.png"       class="ftr-logo eu-logo" alt="EU logo"       onerror="this.style.display='none'">  <!-- ★ EU flag -->
+    <!-- EU logo needs a white background so its dark elements are visible -->
+    <div class="eu-logo-wrap">
+      <img src="assets/images/logo-eu.png" class="eu-logo" alt="European Commission logo"
+           onerror="this.parentElement.style.display='none'">  <!-- ★ EU logo -->
+    </div>
     <span class="ftr-divider"></span>
     <p class="ftr-text">  <!-- ★ funding statement -->
       Funded by the European Union's Horizon Europe — Marie Skłodowska-Curie Actions
@@ -51,8 +55,8 @@
     </p>
     <span class="ftr-divider"></span>
     <div class="ftr-project-logos">
-      <img src="assets/images/logo-better.png"   class="ftr-logo" alt="BETTER logo"   onerror="this.style.display='none'">   <!-- ★ BETTER logo -->
-      <img src="assets/images/logo-seasounds.png" class="ftr-logo" alt="SEASOUNDS logo" onerror="this.style.display='none'"> <!-- ★ SEASOUNDS logo -->
+      <img src="assets/images/logo-seasounds.png" class="ftr-logo" alt="SEASOUNDS logo" onerror="this.style.display='none'"> <!-- ★ SEASOUNDS first -->
+      <img src="assets/images/logo-better.png"    class="ftr-logo" alt="BETTER logo"   onerror="this.style.display='none'"> <!-- ★ then BETTER -->
     </div>
   </footer>
 
