@@ -1,21 +1,35 @@
 /* ============================================================
    OceanQuiz — Internationalisation (EN / FR)
-   Add translations here; access via I18n.t('key')
    ============================================================ */
 
 const I18n = (() => {
   const translations = {
     en: {
-      /* ── App name & welcome ─────────────────────────────── */
-      app_title:        'OceanQuiz',
-      app_subtitle:     'Underwater Acoustics & Bioacoustics',
-      welcome_tagline:  'Test your knowledge of ocean sounds,\nwave propagation & acoustic signatures.',
-      name_label:       'Your name (optional)',
-      name_placeholder: 'e.g. Marie',
-      btn_play:         'Start quiz',
-      btn_leaderboard:  '🏆 Leaderboard',
+      /* ── App ─────────────────────────────────────────────── */
+      app_title:   'OceanQuiz',
+      app_subtitle:'Underwater Acoustics & Bioacoustics',
 
-      /* ── Category selection ─────────────────────────────── */
+      /* ── Home screen (activity hub) ─────────────────────── */
+      home_choose:    'Choose your activity',
+      btn_quiz_label: '🎓 Quiz',
+      quiz_act_name:  'Quiz',
+      quiz_act_desc:  'Test your knowledge of ocean sounds, wave propagation & acoustic signatures',
+      quiz_act_cta:   'Play →',
+      game2_name:     'Game 2',
+      game2_desc:     'A new activity — details coming soon',
+      game3_name:     'Game 3',
+      game3_desc:     'A new activity — details coming soon',
+      coming_soon:    'Coming soon',
+      btn_leaderboard:'🏆 Leaderboard',
+
+      /* ── Welcome / name entry ────────────────────────────── */
+      welcome_for_quiz: 'Enter your name (optional) to track your score on the leaderboard.',
+      name_label:       'Your name',
+      name_placeholder: 'e.g. Marie',
+      btn_play:         'Start quiz →',
+      btn_back:         'Back',
+
+      /* ── Category selection ──────────────────────────────── */
       choose_category:  'Choose a category',
       cat_acoustics:    'Acoustics',
       cat_visual:       'Visual',
@@ -24,9 +38,9 @@ const I18n = (() => {
       cat_acoustics_sub:'Identify sounds by ear',
       cat_visual_sub:   'Read spectrograms & diagrams',
       cat_wave_sub:     'Understand propagation physics',
-      cat_mixed_sub:    '2 questions from each category',
+      cat_mixed_sub:    '5 questions from each category',
 
-      /* ── Quiz screen ────────────────────────────────────── */
+      /* ── Quiz ────────────────────────────────────────────── */
       question_label:   'Question',
       of_label:         'of',
       score_label:      'Score',
@@ -40,51 +54,62 @@ const I18n = (() => {
       btn_next:         'Next →',
       btn_finish:       'See results →',
 
-      /* ── Result screen ──────────────────────────────────── */
-      result_title:     'Quiz complete!',
-      result_perfect:   '🎉 Perfect score — outstanding!',
-      result_great:     '🌊 Excellent knowledge of underwater acoustics!',
-      result_good:      '🐬 Good work — keep exploring the deep!',
-      result_ok:        '🦈 Not bad, but the ocean still has secrets for you.',
-      result_low:       '🔬 Time to dive deeper into the literature!',
-      review_title:     'Answer review',
-      btn_play_again:   'Play again',
-      btn_categories:   'Categories',
-      btn_leaderboard2: '🏆 Leaderboard',
+      /* ── Result ──────────────────────────────────────────── */
+      result_title:   'Quiz complete!',
+      result_perfect: '🎉 Perfect score — outstanding!',
+      result_great:   '🌊 Excellent knowledge of underwater acoustics!',
+      result_good:    '🐬 Good work — keep exploring the deep!',
+      result_ok:      '🦈 Not bad, but the ocean still has secrets for you.',
+      result_low:     '🔬 Time to dive deeper into the literature!',
+      review_title:   'Answer review',
+      btn_play_again: 'Play again',
+      btn_categories: 'Categories',
+      btn_leaderboard2:'🏆 Leaderboard',
 
-      /* ── Leaderboard ────────────────────────────────────── */
-      lb_title:         'Leaderboard',
-      lb_empty:         'No scores yet — be the first to play!',
-      th_rank:          '#',
-      th_name:          'Player',
-      th_score:         'Score',
-      th_category:      'Category',
-      btn_back:         '← Back',
-      btn_clear:        '🗑 Clear all scores',
-      clear_confirm:    'Delete ALL scores? This cannot be undone.',
+      /* ── Leaderboard ─────────────────────────────────────── */
+      lb_title:      'Leaderboard',
+      lb_empty:      'No scores yet — be the first to play!',
+      th_rank:       '#',
+      th_name:       'Player',
+      th_score:      'Score',
+      btn_clear:     '🗑 Clear all scores',
+      clear_confirm: 'Delete ALL scores? This cannot be undone.',
+      tag_acoustics: 'Acoustics',
+      tag_visual:    'Visual',
+      tag_wave:      'Wave Prop.',
+      tag_mixed:     'Mixed',
 
-      /* ── Categories (short tags) ────────────────────────── */
-      tag_acoustics:    'Acoustics',
-      tag_visual:       'Visual',
-      tag_wave:         'Wave Prop.',
-      tag_mixed:        'Mixed',
-
-      /* ── Misc ───────────────────────────────────────────── */
-      pts:              'pts',
-      anonymous:        'Anonymous',
+      /* ── Misc ────────────────────────────────────────────── */
+      pts:       'pts',
+      anonymous: 'Anonymous',
     },
 
     fr: {
-      /* ── Titre & accueil ────────────────────────────────── */
-      app_title:        'OceanQuiz',
-      app_subtitle:     'Acoustique sous-marine & Bioacoustique',
-      welcome_tagline:  'Testez vos connaissances sur les sons océaniques,\nla propagation des ondes et les signatures acoustiques.',
-      name_label:       'Votre prénom (facultatif)',
-      name_placeholder: 'ex. Marie',
-      btn_play:         'Commencer le quiz',
-      btn_leaderboard:  '🏆 Classement',
+      /* ── App ─────────────────────────────────────────────── */
+      app_title:   'OceanQuiz',
+      app_subtitle:'Acoustique sous-marine & Bioacoustique',
 
-      /* ── Sélection de catégorie ─────────────────────────── */
+      /* ── Écran d'accueil ─────────────────────────────────── */
+      home_choose:    'Choisissez votre activité',
+      btn_quiz_label: '🎓 Quiz',
+      quiz_act_name:  'Quiz',
+      quiz_act_desc:  'Testez vos connaissances sur les sons océaniques, la propagation des ondes et les signatures acoustiques',
+      quiz_act_cta:   'Jouer →',
+      game2_name:     'Jeu 2',
+      game2_desc:     'Une nouvelle activité — détails à venir',
+      game3_name:     'Jeu 3',
+      game3_desc:     'Une nouvelle activité — détails à venir',
+      coming_soon:    'Bientôt disponible',
+      btn_leaderboard:'🏆 Classement',
+
+      /* ── Saisie du prénom ────────────────────────────────── */
+      welcome_for_quiz: 'Entrez votre prénom (facultatif) pour apparaître dans le classement.',
+      name_label:       'Votre prénom',
+      name_placeholder: 'ex. Marie',
+      btn_play:         'Commencer →',
+      btn_back:         'Retour',
+
+      /* ── Sélection de catégorie ──────────────────────────── */
       choose_category:  'Choisissez une catégorie',
       cat_acoustics:    'Acoustique',
       cat_visual:       'Visuel',
@@ -93,9 +118,9 @@ const I18n = (() => {
       cat_acoustics_sub:'Identifier les sons à l\'oreille',
       cat_visual_sub:   'Lire des spectrogrammes et diagrammes',
       cat_wave_sub:     'Comprendre la physique de propagation',
-      cat_mixed_sub:    '2 questions par catégorie',
+      cat_mixed_sub:    '5 questions par catégorie',
 
-      /* ── Quiz ───────────────────────────────────────────── */
+      /* ── Quiz ────────────────────────────────────────────── */
       question_label:   'Question',
       of_label:         'sur',
       score_label:      'Score',
@@ -109,56 +134,42 @@ const I18n = (() => {
       btn_next:         'Suivant →',
       btn_finish:       'Voir les résultats →',
 
-      /* ── Résultats ──────────────────────────────────────── */
-      result_title:     'Quiz terminé !',
-      result_perfect:   '🎉 Score parfait — remarquable !',
-      result_great:     '🌊 Excellente maîtrise de l\'acoustique sous-marine !',
-      result_good:      '🐬 Bon travail — continuez à explorer les abysses !',
-      result_ok:        '🦈 Pas mal, mais l\'océan garde encore des secrets.',
-      result_low:       '🔬 Il est temps de plonger plus profond dans la littérature !',
-      review_title:     'Révision des réponses',
-      btn_play_again:   'Rejouer',
-      btn_categories:   'Catégories',
-      btn_leaderboard2: '🏆 Classement',
+      /* ── Résultats ───────────────────────────────────────── */
+      result_title:   'Quiz terminé !',
+      result_perfect: '🎉 Score parfait — remarquable !',
+      result_great:   '🌊 Excellente maîtrise de l\'acoustique sous-marine !',
+      result_good:    '🐬 Bon travail — continuez à explorer les abysses !',
+      result_ok:      '🦈 Pas mal, mais l\'océan garde encore des secrets.',
+      result_low:     '🔬 Il est temps de plonger plus profond dans la littérature !',
+      review_title:   'Révision des réponses',
+      btn_play_again: 'Rejouer',
+      btn_categories: 'Catégories',
+      btn_leaderboard2:'🏆 Classement',
 
-      /* ── Classement ─────────────────────────────────────── */
-      lb_title:         'Classement',
-      lb_empty:         'Aucun score pour l\'instant — soyez le premier !',
-      th_rank:          '#',
-      th_name:          'Joueur',
-      th_score:         'Score',
-      th_category:      'Catégorie',
-      btn_back:         '← Retour',
-      btn_clear:        '🗑 Effacer tous les scores',
-      clear_confirm:    'Supprimer TOUS les scores ? Cette action est irréversible.',
+      /* ── Classement ──────────────────────────────────────── */
+      lb_title:      'Classement',
+      lb_empty:      'Aucun score pour l\'instant — soyez le premier !',
+      th_rank:       '#',
+      th_name:       'Joueur',
+      th_score:      'Score',
+      btn_clear:     '🗑 Effacer tous les scores',
+      clear_confirm: 'Supprimer TOUS les scores ? Action irréversible.',
+      tag_acoustics: 'Acoustique',
+      tag_visual:    'Visuel',
+      tag_wave:      'Propagation',
+      tag_mixed:     'Mixte',
 
-      /* ── Tags catégories ────────────────────────────────── */
-      tag_acoustics:    'Acoustique',
-      tag_visual:       'Visuel',
-      tag_wave:         'Propagation',
-      tag_mixed:        'Mixte',
-
-      /* ── Divers ─────────────────────────────────────────── */
-      pts:              'pts',
-      anonymous:        'Anonyme',
-    }
+      /* ── Divers ──────────────────────────────────────────── */
+      pts:       'pts',
+      anonymous: 'Anonyme',
+    },
   };
 
   let currentLang = 'en';
-
-  function setLang(lang) {
-    if (translations[lang]) currentLang = lang;
-  }
-
-  function getLang() {
-    return currentLang;
-  }
-
+  function setLang(lang) { if (translations[lang]) currentLang = lang; }
+  function getLang() { return currentLang; }
   function t(key) {
-    return (translations[currentLang] && translations[currentLang][key]) ||
-           (translations['en'] && translations['en'][key]) ||
-           key;
+    return (translations[currentLang]?.[key]) ?? (translations.en?.[key]) ?? key;
   }
-
   return { setLang, getLang, t };
 })();
