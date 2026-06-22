@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OceanQuiz 🌊</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ┌──────────────────────────────────────────────────────────────┐
+       │  FIXED HEADER — edit lines marked with ★                    │
+       └──────────────────────────────────────────────────────────────┘ -->
+  <header id="site-header">
+    <div class="hdr-logos">
+      <img src="assets/images/logo-lab.png"         class="hdr-logo" alt="Lab logo"         onerror="this.style.display='none'">
+      <img src="assets/images/logo-institution.png" class="hdr-logo" alt="Institution logo" onerror="this.style.display='none'">
+    </div>
+    <div class="hdr-center">
+      <span class="hdr-appname">APP-Quiz · Underwater Acoustics</span>   <!-- ★ app name -->
+      <span class="hdr-tagline">Fête de la Science 2025 &nbsp;·&nbsp; Laboratoire de Sismo-Acoustique et Bioacoustique</span>  <!-- ★ event & lab -->
+      <span class="hdr-credit">App created by [Prénom Nom]</span>  <!-- ★ your name -->
+    </div>
+    <div class="hdr-controls">
+      <button id="lang-btn" class="lang-btn" onclick="App.toggleLang()">🇫🇷 FR</button>
+      <div class="zoom-btns">
+        <button class="zoom-btn" onclick="App.zoomOut()" title="Zoom out">−</button>
+        <button class="zoom-btn" onclick="App.zoomIn()"  title="Zoom in">+</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main render target -->
+  <div id="app"></div>
+
+  <!-- ┌──────────────────────────────────────────────────────────────┐
+       │  FIXED FOOTER — EU / project funding strip                  │
+       │  Place your logos in assets/images/ — missing ones hide     │
+       │  automatically. Edit the funding text below (★).           │
+       └──────────────────────────────────────────────────────────────┘ -->
+  <footer id="site-footer">
+    <img src="assets/images/logo-eu.png"       class="ftr-logo eu-logo" alt="EU logo"       onerror="this.style.display='none'">  <!-- ★ EU flag -->
+    <span class="ftr-divider"></span>
+    <p class="ftr-text">  <!-- ★ funding statement -->
+      Funded by the European Union's Horizon Europe — Marie Skłodowska-Curie Actions
+      &nbsp;·&nbsp; <strong>BETTER</strong> (GA&nbsp;101169348)
+      &nbsp;·&nbsp; <strong>SEASOUNDS</strong> (GA&nbsp;101119769)
+    </p>
+    <span class="ftr-divider"></span>
+    <div class="ftr-project-logos">
+      <img src="assets/images/logo-better.png"   class="ftr-logo" alt="BETTER logo"   onerror="this.style.display='none'">   <!-- ★ BETTER logo -->
+      <img src="assets/images/logo-seasounds.png" class="ftr-logo" alt="SEASOUNDS logo" onerror="this.style.display='none'"> <!-- ★ SEASOUNDS logo -->
+    </div>
+  </footer>
+
+  <!-- Deep-sea background -->
+  <div class="seabed" aria-hidden="true">
+    <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+    <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+    <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+    <div class="wave-row">
+      <div class="wave w1"></div>
+      <div class="wave w2"></div>
+    </div>
+  </div>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/questions.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
