@@ -55,16 +55,16 @@ const I18n = (() => {
       btn_finish:       'See results →',
 
       /* ── Result ──────────────────────────────────────────── */
-      result_title:   'Quiz complete!',
-      result_perfect: '🎉 Perfect score — outstanding!',
-      result_great:   '🌊 Excellent knowledge of underwater acoustics!',
-      result_good:    '🐬 Good work — keep exploring the deep!',
-      result_ok:      '🦈 Not bad, but the ocean still has secrets for you.',
-      result_low:     '🔬 Time to dive deeper into the literature!',
-      review_title:   'Answer review',
-      btn_play_again: 'Play again',
-      btn_categories: 'Categories',
+      result_title:    'Quiz complete!',
+      result_invite:   '🏆 Your score is on the board — tap the leaderboard to see your position on the podium.',
+      review_title:    'Answer review',
+      btn_play_again:  'Play again',
+      btn_categories:  'Categories',
       btn_leaderboard2:'🏆 Leaderboard',
+
+      /* ── Abandon quiz ────────────────────────────────────── */
+      abandon_btn:     '✕ Quit',
+      abandon_confirm: 'Quit this quiz? Your current score will not be saved.',
 
       /* ── Leaderboard ─────────────────────────────────────── */
       lb_title:      'Leaderboard',
@@ -135,16 +135,16 @@ const I18n = (() => {
       btn_finish:       'Voir les résultats →',
 
       /* ── Résultats ───────────────────────────────────────── */
-      result_title:   'Quiz terminé !',
-      result_perfect: '🎉 Score parfait — remarquable !',
-      result_great:   '🌊 Excellente maîtrise de l\'acoustique sous-marine !',
-      result_good:    '🐬 Bon travail — continuez à explorer les abysses !',
-      result_ok:      '🦈 Pas mal, mais l\'océan garde encore des secrets.',
-      result_low:     '🔬 Il est temps de plonger plus profond dans la littérature !',
-      review_title:   'Révision des réponses',
-      btn_play_again: 'Rejouer',
-      btn_categories: 'Catégories',
+      result_title:    'Quiz terminé !',
+      result_invite:   '🏆 Votre score est enregistré — consultez le classement pour voir votre place sur le podium.',
+      review_title:    'Révision des réponses',
+      btn_play_again:  'Rejouer',
+      btn_categories:  'Catégories',
       btn_leaderboard2:'🏆 Classement',
+
+      /* ── Abandonner le quiz ──────────────────────────────── */
+      abandon_btn:     '✕ Quitter',
+      abandon_confirm: 'Quitter ce quiz ? Votre score actuel ne sera pas enregistré.',
 
       /* ── Classement ──────────────────────────────────────── */
       lb_title:      'Classement',
