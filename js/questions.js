@@ -49,8 +49,8 @@ const Questions = (() => {
     {
       id: 'aq1', category: 'acoustics', type: 'audio',
       media: {
-        en: 'https://upload.wikimedia.org/wikipedia/commons/1/12/Blue_Whale_-_NOAA.ogg',
-        fr: 'https://upload.wikimedia.org/wikipedia/commons/1/12/Blue_Whale_-_NOAA.ogg',
+        en: 'https://dosits.org/wp-content/uploads/2016/11/Hump1.mp3',
+        fr: 'https://dosits.org/wp-content/uploads/2016/11/Hump1.mp3',
       },
       question: {
         en: 'Listen to this recording. Which animal produced this low-frequency sound?',
