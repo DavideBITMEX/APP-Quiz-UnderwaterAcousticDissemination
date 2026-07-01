@@ -1,12 +1,12 @@
 /* ============================================================
-   OceanQuiz — Internationalisation (EN / FR)
+   AcoustiQuiz — Internationalisation (EN / FR)
    ============================================================ */
 
 const I18n = (() => {
   const translations = {
     en: {
       /* ── App ─────────────────────────────────────────────── */
-      app_title:   'OceanQuiz',
+      app_title:   'AcoustiQuiz',
       app_subtitle:'Underwater Acoustics & Bioacoustics',
 
       /* ── Home screen (activity hub) ─────────────────────── */
@@ -86,7 +86,7 @@ const I18n = (() => {
 
     fr: {
       /* ── App ─────────────────────────────────────────────── */
-      app_title:   'OceanQuiz',
+      app_title:   'AcoustiQuiz',
       app_subtitle:'Acoustique sous-marine & Bioacoustique',
 
       /* ── Écran d'accueil ─────────────────────────────────── */
