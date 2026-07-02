@@ -202,6 +202,25 @@ const Questions = (() => {
       },
     },
 
+         {
+      id: 'vq5', category: 'visual', type: 'image',
+      media: { en: 'assets/images/bottlenosedolphin_1.png', 
+              fr: 'assets/images/bottlenosedolphin_1.png'},
+      question: {
+        en: 'Look at the spectrogram. Which animal produces this sound ?',
+        fr: 'Regardez le spectrogramme. Quel animal émet ce son ?',
+      },
+      options: {
+        en: ['A. Humpback whale', 'B. Tiger shark', 'C. Bottlenose dolphin', 'D. Albatros'],
+        fr: ['A. Baleine à bosse', 'B. Requin tigre', 'C. Grand dauphin', 'D. Albatros'],
+      },
+      correct: 2,
+      explanation: {
+        en: 'Bottlenose dolphins produce so-called "signature whistles" — individual-specific calls they use to identify themselves to other members of their group.',
+        fr: 'Les grands dauphins produisent ce qu\'on appelle des "sifflements signature" — des vocalisations propres à chaque individu, utilisées pour se faire reconnaître au sein de leur groupe.',
+      },
+    },
+
     /* ══════════════════════════════════════════════════════
        WAVE PROPAGATION
        ══════════════════════════════════════════════════════ */
