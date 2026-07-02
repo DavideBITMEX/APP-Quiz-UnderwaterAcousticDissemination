@@ -60,10 +60,10 @@ const Questions = (() => {
         en: ['A. Humpback whale', 'B. Blue whale', 'C. Sperm whale', 'D. Dolphin'],
         fr: ['A. Baleine à bosse', 'B. Baleine bleue', 'C. Cachalot', 'D. Dauphin'],
       },
-      correct: 1,
+      correct: 0,
       explanation: {
-        en: 'Blue whales produce the lowest-frequency sounds of any animal — down to ~10–40 Hz. This characteristic "D-call" was recorded by NOAA.',
-        fr: 'Les baleines bleues produisent les sons les plus graves de tout le règne animal — entre ~10 et 40 Hz. Ce "D-call" a été enregistré par la NOAA.',
+        en: 'Humpback whale males produce long, complex songs lasting up to 20 minutes, composed of repeated sequences of moans, cries and chirps. These songs evolve culturally across populations each breeding season and are thought to play a role in mate attraction.',
+        fr: 'Les mâles de baleines à bosse produisent de longs chants complexes pouvant durer jusqu\'à 20 minutes, composés de séquences répétées de gémissements, de cris et de gazouillis. Ces chants évoluent culturellement au sein des populations à chaque saison de reproduction et joueraient un rôle dans l\'attraction des partenaires.',
       },
     },
 
