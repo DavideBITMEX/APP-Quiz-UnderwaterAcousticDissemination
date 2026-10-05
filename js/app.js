@@ -162,6 +162,7 @@ const App = (() => {
           <div class="fb-label">${correct ? I18n.t('feedback_correct') : I18n.t('feedback_wrong')}</div>
           <div class="fb-answer">${I18n.t('answer_label')} <strong>${escHtml(stripLetter(q.options[lang][q.correct]))}</strong></div>
           ${exp ? `<div class="fb-exp">${escHtml(exp)}</div>` : ''}
+          ${explanationFigure(q, lang)}
         </div>`;
       fb.style.display = 'block';
     }
@@ -341,8 +342,25 @@ const App = (() => {
           <div class="options">${opts}</div>
           <div id="feedback" style="display:none"></div>
           <div id="next-wrap" class="next-wrap"></div>
+          ${sourcesNote()}
         </div>
       </div>`;
+  }
+
+  /* Optional picture shown with the explanation (hidden if the file is missing) */
+  function explanationFigure(q, lang) {
+    const img = Questions.getExplanationImage(q, lang);
+    if (!img) return '';
+    return `<figure class="fb-figure">
+      <img src="${escAttr(img.src)}" alt="" class="fb-img" onerror="this.closest('.fb-figure').remove()">
+      ${img.credit ? `<figcaption class="fb-credit">${escHtml(img.credit)}</figcaption>` : ''}
+    </figure>`;
+  }
+
+  /* Small-print line with the information sources (text set in questions.js) */
+  function sourcesNote() {
+    if (typeof INFO_SOURCES === 'undefined' || !INFO_SOURCES) return '';
+    return `<p class="sources-note"><strong>ℹ️ ${I18n.t('sources_label')}</strong> ${escHtml(INFO_SOURCES)}</p>`;
   }
 
   function renderMedia(q, lang) {
@@ -417,6 +435,7 @@ const App = (() => {
             <summary>${I18n.t('review_title')}</summary>
             <div class="review-list">${review}</div>
           </details>
+          ${sourcesNote()}
         </div>
       </div>`;
   }
