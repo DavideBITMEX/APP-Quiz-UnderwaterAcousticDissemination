@@ -20,8 +20,9 @@ const LEVELS = {
   easy:   { questions:  5, pointsPerQuestion: 10, minutes: 2, icon: '🐟' },
   medium: { questions: 10, pointsPerQuestion: 15, minutes: 5, icon: '🐬' },
   pro:    { questions: 15, pointsPerQuestion: 20, minutes: 8, icon: '🐋' },
+  marathon: { questions: 999, pointsPerQuestion: 20, minutes: 15, icon: '🌊' },   // ← NEW
 };
-const LEVEL_ORDER = ['easy', 'medium', 'pro'];   // order of the cards on screen
+const LEVEL_ORDER = ['easy', 'medium', 'pro', 'marathon'];   // order of the cards on screen
 
 /* ============================================================
    ★★★ 1b. INFORMATION SOURCES — shown in small print on screen ★★★
@@ -123,7 +124,7 @@ const Questions = (() => {
       media: snd('Humpback_whale-1'),   // or the web version: 'https://dosits.org/wp-content/uploads/2016/11/Hump1.mp3'
       // ▼ EXAMPLE of an image shown together with the explanation (file goes in assets/images/):
       explanationImage: 'assets/images/humpback.png',
-      // explanationImageCredit: '© Photo: …',    // optional small credit under the picture
+      explanationImageCredit: 'From NOAA Fisheries - Drawing: Dawn Witherington',    // optional small credit under the picture
       question: {
         en: 'What produces this sound?',
         fr: 'Qu\'est-ce qui produit ce son ?',
