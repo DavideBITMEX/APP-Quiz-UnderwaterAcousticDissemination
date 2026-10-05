@@ -49,6 +49,7 @@
   --lvl-easy:   #0b7f4f;   --lvl-easy-bg:   rgba(11, 127, 79, .12);
   --lvl-medium: #b35f00;   --lvl-medium-bg: rgba(230, 126, 0, .14);
   --lvl-pro:    #b01e50;   --lvl-pro-bg:    rgba(176, 30, 80, .11);
+  --lvl-marathon: #5b3cc4;  --lvl-marathon-bg: rgba(91, 60, 196, .12);
 
   /* podium */
   --gold: #d49a00;  --silver: #7c93a8;  --bronze: #b06a22;
@@ -99,6 +100,7 @@
   --lvl-easy:   #34d399;  --lvl-easy-bg:   rgba(52, 211, 153, .14);
   --lvl-medium: #fbbf24;  --lvl-medium-bg: rgba(251, 191, 36, .14);
   --lvl-pro:    #fb7185;  --lvl-pro-bg:    rgba(251, 113, 133, .15);
+  --lvl-marathon: #a78bfa;  --lvl-marathon-bg: rgba(167, 139, 250, .16);
 
   --gold: #f5c842;  --silver: #b8c8d8;  --bronze: #cd7f32;
 
@@ -291,6 +293,7 @@ p  { line-height: 1.65; color: var(--ink-dim); }
 .lvl-badge.lvl-easy   { color: var(--lvl-easy);   background: var(--lvl-easy-bg); }
 .lvl-badge.lvl-medium { color: var(--lvl-medium); background: var(--lvl-medium-bg); }
 .lvl-badge.lvl-pro    { color: var(--lvl-pro);    background: var(--lvl-pro-bg); }
+.lvl-badge.lvl-marathon { color: var(--lvl-marathon); background: var(--lvl-marathon-bg); }
 
 /* ══════════════════════════════════════════════════════════
    SCREEN: HOME
@@ -370,7 +373,7 @@ p  { line-height: 1.65; color: var(--ink-dim); }
 .level-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; margin-top: 22px; }
 .level-card {
   --lvl: var(--primary); --lvl-bg: var(--primary-soft);
-  flex: 1 1 240px; max-width: 300px;
+  flex: 1 1 210px; max-width: 300px;
   background: var(--surface); border: 1px solid var(--edge-strong); border-top: 5px solid var(--lvl);
   border-radius: var(--r); padding: 24px 20px 20px;
   color: var(--ink); text-align: center; cursor: pointer;
@@ -380,6 +383,7 @@ p  { line-height: 1.65; color: var(--ink-dim); }
 .level-card.lvl-easy   { --lvl: var(--lvl-easy);   --lvl-bg: var(--lvl-easy-bg); }
 .level-card.lvl-medium { --lvl: var(--lvl-medium); --lvl-bg: var(--lvl-medium-bg); }
 .level-card.lvl-pro    { --lvl: var(--lvl-pro);    --lvl-bg: var(--lvl-pro-bg); }
+.level-card.lvl-marathon { --lvl: var(--lvl-marathon); --lvl-bg: var(--lvl-marathon-bg); }
 .level-card:hover { transform: translateY(-5px); border-color: var(--lvl); box-shadow: 0 14px 38px var(--lvl-bg), var(--shadow); background: var(--surface); }
 .lvl-icon { font-size: 2.8rem; line-height: 1.1; }
 .lvl-name { font-family: var(--f-display); font-size: 1.4rem; font-weight: 700; color: var(--lvl); }
