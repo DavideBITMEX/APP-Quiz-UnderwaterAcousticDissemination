@@ -397,6 +397,7 @@ p  { line-height: 1.65; color: var(--ink-dim); }
 .quiz-screen { width: 100%; display: flex; flex-direction: column; align-items: center; margin-bottom: auto; }
 .quiz-card {
   max-width: min(1080px, calc(100vw - 24px));
+  min-height: calc(100svh - var(--header-h) - var(--footer-h) - 56px);   /* box fills the screen */
   display: flex; flex-direction: column; padding: 32px 40px;
 }
 .quiz-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; gap: 12px; flex-wrap: wrap; }
@@ -481,6 +482,10 @@ p  { line-height: 1.65; color: var(--ink-dim); }
 .fb-figure { margin: 14px 0 2px; text-align: center; }
 .fb-img { max-width: 100%; max-height: 280px; border-radius: 8px; border: 1px solid var(--edge); background: #fff; }
 .fb-credit { margin-top: 5px; font-size: .74rem; color: var(--ink-muted); }
+
+/* inside the (tall) quiz card: spare height goes below the explanation, sources stay at the bottom */
+.quiz-card .next-wrap { margin-bottom: 22px; }
+.quiz-card .sources-note { margin-top: auto; }
 
 /* information sources (small print) */
 .sources-note {
