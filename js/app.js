@@ -110,7 +110,11 @@ const App = (() => {
     audio.addEventListener('error', () => {
       if (state.audio !== audio) return;                          // stopped in the meantime
       if (i + 1 < list.length) tryPlay(url, list, i + 1);        // try the next extension
-      else { state.audio = null; mediaFailed(document.querySelector('.media-box')); }
+      else {
+        state.audio = null;
+        console.warn('[OceanQuiz] No playable sound found. Files tried:', list);
+        mediaFailed(document.querySelector('.media-box'), url);
+      }
     });
     audio.play().catch(() => {});
     const btn = document.getElementById('audio-play-btn');
@@ -120,9 +124,10 @@ const App = (() => {
   }
 
   /* Shown when an image / audio / video file cannot be loaded */
-  function mediaFailed(el) {
+  function mediaFailed(el, detail) {
     const box = el && (el.closest ? el.closest('.media-box') : el);
-    if (box) box.innerHTML = `<div class="placeholder"><div class="ph-icon">⚠️</div><div class="ph-hint">${I18n.t('media_error')}</div></div>`;
+    if (!detail && el && el.getAttribute) detail = el.getAttribute('src');
+    if (box) box.innerHTML = `<div class="placeholder"><div class="ph-icon">⚠️</div><div class="ph-hint">${I18n.t('media_error')}</div>${detail ? `<div class="ph-detail">${escHtml(detail)}</div>` : ''}</div>`;
   }
 
   /* ── Navigation ────────────────────────────────────────── */
