@@ -20,8 +20,9 @@ const LEVELS = {
   easy:   { questions:  5, pointsPerQuestion: 10, minutes: 2, icon: '🐟' },
   medium: { questions: 10, pointsPerQuestion: 15, minutes: 5, icon: '🐬' },
   pro:    { questions: 15, pointsPerQuestion: 20, minutes: 8, icon: '🐋' },
+  marathon: { questions: 999, pointsPerQuestion: 20, minutes: 15, icon: '🌊' },   // 999 = ALL the questions
 };
-const LEVEL_ORDER = ['easy', 'medium', 'pro'];   // order of the cards on screen
+const LEVEL_ORDER = ['easy', 'medium', 'pro', 'marathon'];   // order of the cards on screen
 
 /* ============================================================
    ★★★ 1b. INFORMATION SOURCES — shown in small print on screen ★★★
@@ -550,7 +551,7 @@ const Questions = (() => {
 
     {
       id: 'g08', type: 'text', shuffle: true,
-      type: 'image',  media: 'assets/images/hydrophone.jpg',
+      // IMAGE IDEA (question): photo of a hydrophone →  type: 'image',  media: 'assets/images/hydrophone.jpg',
       question: {
         en: 'What is the name of the microphone that scientists use to listen under water?',
         fr: 'Comment s\'appelle le microphone que les scientifiques utilisent pour écouter sous l\'eau ?',
@@ -639,8 +640,8 @@ const Questions = (() => {
     },
 
     {
-      id: 'g13', type: 'text', shuffle: true,
-      type: 'image',  media: 'assets/images/ring-of-fire.jpg',
+      id: 'g13', type: 'image', shuffle: true,
+      media: 'assets/images/ring-of-fire.jpg',      // world map with the Ring of Fire
       question: {
         en: 'Most of the world\'s earthquakes and volcanoes occur along a huge horseshoe-shaped zone around the Pacific Ocean. What is it called?',
         fr: 'La plupart des séismes et des volcans du monde se trouvent le long d\'une immense zone en fer à cheval autour de l\'océan Pacifique. Comment s\'appelle-t-elle ?',
@@ -657,8 +658,8 @@ const Questions = (() => {
     },
 
     {
-      id: 'g14', type: 'text', shuffle: true,
-      type: 'image',  media: 'assets/images/seismogram.jpg',
+      id: 'g14', type: 'image', shuffle: true,
+      media: 'assets/images/seismogram.jpg',        // seismogram showing the different wave types
       question: {
         en: 'When an earthquake happens, which waves reach a seismometer first?',
         fr: 'Lorsqu\'un séisme se produit, quelles ondes atteignent un sismomètre en premier ?',
