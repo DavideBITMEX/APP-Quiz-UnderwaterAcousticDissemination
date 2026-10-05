@@ -30,16 +30,15 @@ const LEVEL_ORDER = ['easy', 'medium', 'pro'];   // order of the cards on screen
 const INFO_SOURCES = '© DOSITS.org, DORIS.ffessm.fr, ocr.org, weedersdigest.com, American Cetacean Society, Wikipedia';
 
 /* ============================================================
-   ★★★ 1c. SOUND FILES ★★★
-   snd('croaker') → 'assets/sounds/croaker.mp3'
-   If your sound files are not .mp3, change the extension here.
-   (A single file with another extension: write the full name,
-    e.g. snd('croaker.wav') — the extension is then kept.)
+   ★★★ 1c. SOUND FILES — mix mp3 / wav / mp4 freely ★★★
+   snd('croaker') → looks for assets/sounds/croaker + one of the
+   extensions below, tried in this order, until one plays.
+   So you do NOT need to say which format each file has.
+   You can also give the extension yourself if you prefer:
+   snd('croaker.wav')  (then only that exact file is used).
    ============================================================ */
-const SOUND_EXT = '.mp3';
-function snd(name) {
-  return 'assets/sounds/' + (/\.\w{2,4}$/.test(name) ? name : name + SOUND_EXT);
-}
+const SOUND_EXTENSIONS = ['.mp3', '.wav', '.mp4', '.m4a', '.ogg'];
+function snd(name) { return 'assets/sounds/' + name; }
 
 /* ============================================================
    ★★★ 2. HOW TO ADD A QUESTION ★★★
