@@ -89,18 +89,31 @@ const App = (() => {
     if (btn) { btn.textContent = I18n.t('btn_play_audio'); btn.classList.remove('playing'); }
     if (wf)  { wf.classList.add('idle'); }
   }
+  /* A sound path without extension (e.g. 'assets/sounds/croaker') is tried with each
+     extension of SOUND_EXTENSIONS (see questions.js); the one that works is remembered. */
+  const soundFound = {};
+  function soundCandidates(url) {
+    if (soundFound[url]) return [soundFound[url]];
+    if (/\.\w{2,4}$/.test(url)) return [url];                 // extension already given
+    return SOUND_EXTENSIONS.map(ext => url + ext);
+  }
   function toggleAudio(url) {
     if (state.audio && !state.audio.paused) { stopAudio(); return; }
-    const btn = document.getElementById('audio-play-btn');
-    const wf  = document.querySelector('.waveform');
-    const audio = new Audio(url);
+    tryPlay(url, soundCandidates(url), 0);
+  }
+  function tryPlay(url, list, i) {
+    const audio = new Audio(list[i]);
     state.audio = audio;
     audio.addEventListener('ended', stopAudio);
+    audio.addEventListener('playing', () => { soundFound[url] = list[i]; }, { once: true });
     audio.addEventListener('error', () => {
-      state.audio = null;
-      mediaFailed(document.querySelector('.media-box'));
+      if (state.audio !== audio) return;                          // stopped in the meantime
+      if (i + 1 < list.length) tryPlay(url, list, i + 1);        // try the next extension
+      else { state.audio = null; mediaFailed(document.querySelector('.media-box')); }
     });
     audio.play().catch(() => {});
+    const btn = document.getElementById('audio-play-btn');
+    const wf  = document.querySelector('.waveform');
     if (btn) { btn.textContent = I18n.t('btn_stop_audio'); btn.classList.add('playing'); }
     if (wf)  { wf.classList.remove('idle'); }
   }
