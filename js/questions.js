@@ -551,7 +551,7 @@ const Questions = (() => {
 
     {
       id: 'g08', type: 'text', shuffle: true,
-      // IMAGE IDEA (question): photo of a hydrophone →  type: 'image',  media: 'assets/images/hydrophone.jpg',
+      explanationImage: 'assets/images/hydrophone.jpg',
       question: {
         en: 'What is the name of the microphone that scientists use to listen under water?',
         fr: 'Comment s\'appelle le microphone que les scientifiques utilisent pour écouter sous l\'eau ?',
@@ -658,8 +658,8 @@ const Questions = (() => {
     },
 
     {
-      id: 'g14', type: 'image', shuffle: true,
-      media: 'assets/images/seismogram.jpg',        // seismogram showing the different wave types
+      id: 'g14', type: 'text', shuffle: true,
+      explanationImage: 'assets/images/seismogram.jpg',        // seismogram showing the different wave types
       question: {
         en: 'When an earthquake happens, which waves reach a seismometer first?',
         fr: 'Lorsqu\'un séisme se produit, quelles ondes atteignent un sismomètre en premier ?',
