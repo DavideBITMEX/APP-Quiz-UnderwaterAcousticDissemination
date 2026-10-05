@@ -20,9 +20,8 @@ const LEVELS = {
   easy:   { questions:  5, pointsPerQuestion: 10, minutes: 2, icon: '🐟' },
   medium: { questions: 10, pointsPerQuestion: 15, minutes: 5, icon: '🐬' },
   pro:    { questions: 15, pointsPerQuestion: 20, minutes: 8, icon: '🐋' },
-  marathon: { questions: 999, pointsPerQuestion: 20, minutes: 15, icon: '🌊' },   // ← NEW
 };
-const LEVEL_ORDER = ['easy', 'medium', 'pro', 'marathon'];   // order of the cards on screen
+const LEVEL_ORDER = ['easy', 'medium', 'pro'];   // order of the cards on screen
 
 /* ============================================================
    ★★★ 1b. INFORMATION SOURCES — shown in small print on screen ★★★
@@ -38,7 +37,7 @@ const INFO_SOURCES = '© DOSITS.org, DORIS.ffessm.fr, ocr.org, weedersdigest.com
    You can also give the extension yourself if you prefer:
    snd('croaker.wav')  (then only that exact file is used).
    ============================================================ */
-const SOUND_EXTENSIONS = ['.mp3', '.wav', '.mp4', '.m4a', '.ogg'];
+const SOUND_EXTENSIONS = ['.mp3', '.wav', '.mp4', '.m4a', '.ogg', '.MP3', '.WAV', '.MP4', '.M4A', '.OGG'];
 function snd(name) { return 'assets/sounds/' + name; }
 
 /* ============================================================
@@ -123,8 +122,8 @@ const Questions = (() => {
       id: 's01', type: 'audio', shuffle: true,
       media: snd('Humpback_whale-1'),   // or the web version: 'https://dosits.org/wp-content/uploads/2016/11/Hump1.mp3'
       // ▼ EXAMPLE of an image shown together with the explanation (file goes in assets/images/):
-      explanationImage: 'assets/images/humpback.png',
-      explanationImageCredit: 'From NOAA Fisheries - Drawing: Dawn Witherington',    // optional small credit under the picture
+      explanationImage: 'assets/images/humpback-whale.jpg',
+      // explanationImageCredit: '© Photo: …',    // optional small credit under the picture
       question: {
         en: 'What produces this sound?',
         fr: 'Qu\'est-ce qui produit ce son ?',
@@ -411,130 +410,291 @@ const Questions = (() => {
     },
 
     /* ══════════════════════════════════════════════════════════
-       OTHER QUESTIONS (spectrograms, diagrams, text)
+       GENERAL-PUBLIC QUESTIONS (no sound to play)
+       Underwater acoustics · bioacoustics · seismology
+       Written with the correct answer FIRST; `shuffle: true` mixes the answers each game.
+
+       IMAGES — two kinds, both optional:
+        • explanationImage → shown WITH the explanation. Lines below are already active:
+          drop a file with that exact name in assets/images/ and it appears
+          (if the file is missing, nothing is shown).
+        • question image  → shown ABOVE the question. Lines marked "IMAGE IDEA" are
+          commented out: to use one, change type to 'image' and uncomment `media`.
        ══════════════════════════════════════════════════════════ */
 
     {
-      id: 'q02', type: 'audio',
-      media: 'https://upload.wikimedia.org/wikipedia/commons/e/e3/Humpback_Whale_song.ogg',
+      id: 'g01', type: 'text', shuffle: true,
+      explanationImage: 'assets/images/speed-of-sound.png',     // IDEA: infographic — speed of sound in air / water / steel
       question: {
-        en: 'This recording features a long, complex vocal sequence. Which species is known for this behaviour?',
-        fr: 'Cet enregistrement présente une longue séquence vocale complexe. Quelle espèce est connue pour ce comportement ?',
+        en: 'Sound travels much faster in water than in air. About how many times faster?',
+        fr: 'Le son se propage beaucoup plus vite dans l\'eau que dans l\'air. Environ combien de fois plus vite ?',
       },
       options: {
-        en: ['A. Blue whale', 'B. Orca', 'C. Humpback whale', 'D. Fin whale'],
-        fr: ['A. Baleine bleue', 'B. Orque', 'C. Baleine à bosse', 'D. Rorqual commun'],
+        en: ['About 4 times faster', 'About the same speed', 'About 2 times slower', 'About 100 times faster'],
+        fr: ['Environ 4 fois plus vite', 'À peu près à la même vitesse', 'Environ 2 fois plus lentement', 'Environ 100 fois plus vite'],
       },
-      correct: 2,
+      correct: 0,
       explanation: {
-        en: 'Humpback whale males produce elaborate songs lasting up to 20 minutes, which evolve culturally across populations each breeding season.',
-        fr: 'Les mâles de baleines à bosse produisent des chants élaborés pouvant durer jusqu\'à 20 minutes, qui évoluent culturellement à chaque saison de reproduction.',
+        en: 'In air, sound travels at about 340 metres per second. In seawater it reaches about 1,500 metres per second — roughly 4 times faster. This is one reason why sound is such an efficient way for marine animals, and for scientists, to send information over long distances.',
+        fr: 'Dans l\'air, le son se propage à environ 340 mètres par seconde. Dans l\'eau de mer, il atteint environ 1 500 mètres par seconde, soit environ 4 fois plus vite. C\'est l\'une des raisons pour lesquelles le son est un moyen si efficace, pour les animaux marins comme pour les scientifiques, de transmettre des informations sur de longues distances.',
       },
     },
 
     {
-      id: 'q03', type: 'text',
+      id: 'g02', type: 'text', shuffle: true,
+      explanationImage: 'assets/images/sonar-echo.png',         // IDEA: diagram of a ship sending a sonar ping and receiving the echo
       question: {
-        en: 'Seismic airgun arrays are used in ocean floor surveys. What is their primary acoustic characteristic?',
-        fr: 'Les canons à air sismiques sont utilisés dans les relevés du fond océanique. Quelle est leur principale caractéristique acoustique ?',
+        en: 'How does a ship\'s sonar measure how deep the sea is?',
+        fr: 'Comment le sonar d\'un navire mesure-t-il la profondeur de la mer ?',
       },
       options: {
-        en: ['A. Narrow-band at 1 kHz', 'B. Broadband impulses 5–300 Hz', 'C. Pure tone at 50 Hz', 'D. Clicks above 20 kHz'],
-        fr: ['A. Bande étroite à 1 kHz', 'B. Impulsions large bande 5–300 Hz', 'C. Tonalité pure à 50 Hz', 'D. Clics au-dessus de 20 kHz'],
+        en: ['It sends a sound pulse down and times how long the echo takes to return', 'It lowers a very long rope with a weight at the end', 'It shines a laser beam down to the seabed', 'It measures how warm the water is at the bottom'],
+        fr: ['Il envoie une impulsion sonore vers le fond et mesure le temps que l\'écho met à revenir', 'Il descend une très longue corde avec un poids au bout', 'Il envoie un rayon laser jusqu\'au fond', 'Il mesure la chaleur de l\'eau au fond'],
       },
-      correct: 1,
+      correct: 0,
       explanation: {
-        en: 'Seismic air-gun arrays release compressed air to produce broadband impulsive signals primarily between 5 and 300 Hz, penetrating the seafloor to map geological structures.',
-        fr: 'Les canons à air libèrent de l\'air comprimé pour produire des signaux impulsionnels large bande (5–300 Hz), pénétrant le fond marin pour cartographier les structures géologiques.',
+        en: 'A sonar (SOund Navigation And Ranging) sends a short sound pulse towards the seabed and listens for its echo. Since sound travels at about 1,500 metres per second in water, the depth is half of the travel time multiplied by that speed: an echo returning after 2 seconds means the seabed is about 1,500 metres below the ship.',
+        fr: 'Un sonar (SOund Navigation And Ranging, « navigation et télémétrie par le son ») envoie une courte impulsion sonore vers le fond et écoute son écho. Comme le son parcourt environ 1 500 mètres par seconde dans l\'eau, la profondeur est la moitié du temps de trajet multipliée par cette vitesse : un écho qui revient après 2 secondes signifie que le fond se trouve à environ 1 500 mètres sous le navire.',
       },
     },
 
     {
-      id: 'q04', type: 'text',
+      id: 'g03', type: 'text', shuffle: true,
+      explanationImage: 'assets/images/sound-surface-reflection.png',   // IDEA: diagram — sound from the air bouncing off the water surface
       question: {
-        en: 'Sperm whales use bio-sonar clicks for echolocation. In which frequency range do these clicks primarily fall?',
-        fr: 'Les cachalots utilisent des clics de bio-sonar pour l\'écholocation. Dans quelle plage de fréquences se situent-ils ?',
+        en: 'When you are underwater, why can you hardly hear people talking above the surface?',
+        fr: 'Quand on est sous l\'eau, pourquoi entend-on à peine les personnes qui parlent à l\'air libre ?',
       },
       options: {
-        en: ['A. 10–100 Hz (infrasound)', 'B. 100 Hz–1 kHz (low audio)', 'C. 1–30 kHz (mid–high audio)', 'D. 100 kHz–1 MHz (ultrasound)'],
-        fr: ['A. 10–100 Hz (infrason)', 'B. 100 Hz–1 kHz (basse fréquence)', 'C. 1–30 kHz (moyen–haute fréquence)', 'D. 100 kHz–1 MHz (ultrason)'],
+        en: ['Almost all the sound bounces off the water surface', 'Sound cannot travel through water', 'The water is too cold for sound to pass', 'The people are always speaking too quietly'],
+        fr: ['Presque tout le son rebondit sur la surface de l\'eau', 'Le son ne peut pas se propager dans l\'eau', 'L\'eau est trop froide pour laisser passer le son', 'Les gens parlent toujours trop doucement'],
       },
-      correct: 2,
+      correct: 0,
       explanation: {
-        en: 'Sperm whale echolocation clicks are broadband, with most energy between 2 and 30 kHz. Their "regular clicks" (codas) serve communication; rapid "creaks" target prey.',
-        fr: 'Les clics de cachalot sont large bande, avec l\'essentiel de l\'énergie entre 2 et 30 kHz. Les "clics réguliers" (codas) servent à la communication ; les "couinements" rapides ciblent les proies.',
+        en: 'Air and water are so different (water is about 800 times denser than air) that more than 99.9% of the sound energy coming from the air is reflected by the surface, a bit like light on a mirror. Only a tiny part gets through. The same happens the other way round: sounds made underwater mostly stay underwater.',
+        fr: 'L\'air et l\'eau sont si différents (l\'eau est environ 800 fois plus dense que l\'air) que plus de 99,9 % de l\'énergie sonore venant de l\'air est réfléchie par la surface, un peu comme la lumière sur un miroir. Seule une toute petite partie passe. C\'est pareil dans l\'autre sens : les sons produits sous l\'eau restent en grande partie sous l\'eau.',
       },
     },
 
     {
-      id: 'q05', type: 'image',
-      media: 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Call_spectrogram.png',
+      id: 'g04', type: 'text', shuffle: true,
+      explanationImage: 'assets/images/ocean-light-zones.png',  // IDEA: diagram of the ocean's light zones (sunlit / twilight / dark)
       question: {
-        en: 'Examine this spectrogram. The narrow band below 100 Hz with long duration is characteristic of which source?',
-        fr: 'Examinez ce spectrogramme. La bande étroite en dessous de 100 Hz avec une longue durée est caractéristique de quelle source ?',
+        en: 'Why do so many sea animals use sound, rather than sight, to communicate and find food?',
+        fr: 'Pourquoi tant d\'animaux marins utilisent-ils le son plutôt que la vue pour communiquer et trouver de la nourriture ?',
       },
       options: {
-        en: ['A. Ship propeller cavitation', 'B. Blue whale D-call', 'C. Dolphin whistle', 'D. Earthquake T-phase'],
-        fr: ['A. Cavitation d\'hélice', 'B. D-call de baleine bleue', 'C. Sifflement de dauphin', 'D. Phase T sismique'],
+        en: ['Light fades quickly in water, while sound travels very far', 'Most sea animals have no eyes', 'Light cannot enter the water at all', 'Their eyes only work at night'],
+        fr: ['La lumière s\'atténue vite dans l\'eau, alors que le son porte très loin', 'La plupart des animaux marins n\'ont pas d\'yeux', 'La lumière ne peut pas pénétrer dans l\'eau', 'Leurs yeux ne fonctionnent que la nuit'],
       },
-      correct: 1,
+      correct: 0,
       explanation: {
-        en: 'Blue whale D-calls appear as narrow-band tonal signals below 100 Hz lasting several seconds. This distinguishes them from broadband noise sources.',
-        fr: 'Les D-calls de baleine bleue apparaissent comme des signaux tonals en dessous de 100 Hz, d\'une durée de plusieurs secondes — les distinguant des bruits large bande.',
+        en: 'Water absorbs sunlight quickly: below about 200 metres there is very little light left, and below 1,000 metres it is completely dark. Even in clear surface water, you can rarely see more than a few tens of metres. Sound, on the other hand, travels fast and far — the lowest sounds can cross entire oceans — so listening and calling is far more useful than looking.',
+        fr: 'L\'eau absorbe rapidement la lumière du soleil : en dessous d\'environ 200 mètres il reste très peu de lumière, et en dessous de 1 000 mètres c\'est l\'obscurité totale. Même dans une eau claire, on voit rarement à plus de quelques dizaines de mètres. Le son, lui, se propage vite et loin — les sons les plus graves peuvent traverser des océans entiers — si bien qu\'écouter et émettre des sons est bien plus utile que regarder.',
       },
     },
 
     {
-      id: 'q06', type: 'text',
+      id: 'g05', type: 'text', shuffle: true,
+      // no image needed for this one
       question: {
-        en: 'On a dolphin echolocation spectrogram, the clicks appear as vertical broadband striations. What does the spacing between them indicate?',
-        fr: 'Sur un spectrogramme d\'écholocation de dauphin, les clics forment des stries verticales. Qu\'indique l\'espacement entre elles ?',
+        en: 'Which unit is used to measure how LOUD a sound is?',
+        fr: 'Quelle unité sert à mesurer l\'intensité (le « volume ») d\'un son ?',
       },
       options: {
-        en: ['A. The signal frequency', 'B. The water temperature', 'C. The inter-click interval — related to target distance', 'D. The depth of the animal'],
-        fr: ['A. La fréquence du signal', 'B. La température de l\'eau', 'C. L\'intervalle inter-clics — lié à la distance de la cible', 'D. La profondeur de l\'animal'],
+        en: ['Decibel (dB)', 'Hertz (Hz)', 'Kelvin (K)', 'Kilogram (kg)'],
+        fr: ['Décibel (dB)', 'Hertz (Hz)', 'Kelvin (K)', 'Kilogramme (kg)'],
       },
-      correct: 2,
+      correct: 0,
       explanation: {
-        en: 'Dolphins adjust the inter-click interval (ICI) so the next click is sent after the previous echo returns. ICI ≈ 2 × (target distance) / 1500 m/s.',
-        fr: 'Les dauphins ajustent l\'ICI de sorte que le prochain clic n\'est émis qu\'après le retour de l\'écho. ICI ≈ 2 × (distance cible) / 1500 m/s.',
+        en: 'Loudness is measured in decibels (dB). The scale is not linear: every +10 dB means a sound that is 10 times more intense. Hertz (Hz), the other famous unit of sound, measures the pitch — how low or high a sound is. Careful: decibels underwater and in air use different reference values, so their numbers cannot be compared directly.',
+        fr: 'L\'intensité sonore se mesure en décibels (dB). L\'échelle n\'est pas linéaire : chaque tranche de +10 dB correspond à un son 10 fois plus intense. Le hertz (Hz), l\'autre unité célèbre du son, mesure la hauteur du son : s\'il est grave ou aigu. Attention : les décibels sous l\'eau et dans l\'air n\'ont pas la même référence, leurs valeurs ne peuvent donc pas être comparées directement.',
       },
     },
 
     {
-      id: 'q07', type: 'text',
+      id: 'g06', type: 'text', shuffle: true,
+      explanationImage: 'assets/images/dolphin-echolocation.png',   // IDEA: diagram of a dolphin sending clicks and receiving echoes
       question: {
-        en: 'Ship propeller cavitation appears on a spectrogram as a broadband hum with harmonics. At roughly what fundamental frequency for large cargo vessels?',
-        fr: 'La cavitation d\'hélice apparaît sur un spectrogramme comme un bourdonnement avec des harmoniques. À quelle fréquence fondamentale pour les grands navires cargo ?',
+        en: 'How do dolphins "see" their prey in dark or murky water?',
+        fr: 'Comment les dauphins « voient »-ils leurs proies dans une eau sombre ou trouble ?',
       },
       options: {
-        en: ['A. 0.01–0.1 Hz', 'B. 1–30 Hz', 'C. 1–10 kHz', 'D. 20–100 kHz'],
-        fr: ['A. 0,01–0,1 Hz', 'B. 1–30 Hz', 'C. 1–10 kHz', 'D. 20–100 kHz'],
+        en: ['They send out clicks and listen to the echoes coming back', 'They smell their prey from far away', 'They feel the water with their whiskers', 'They light up the water with their own lamp'],
+        fr: ['Ils émettent des clics et écoutent les échos qui reviennent', 'Ils sentent leurs proies de très loin', 'Ils sentent l\'eau avec leurs moustaches', 'Ils éclairent l\'eau avec leur propre lampe'],
       },
-      correct: 1,
+      correct: 0,
       explanation: {
-        en: 'The blade-rate fundamental of large ship propellers typically falls in the 1–30 Hz range (blade count × rotational speed). Higher harmonics extend into hundreds of Hz.',
-        fr: 'La fréquence de pale des grands navires est typiquement dans la plage 1–30 Hz (nombre de pales × vitesse de rotation). Les harmoniques supérieures s\'étendent jusqu\'à plusieurs centaines de Hz.',
+        en: 'Dolphins use echolocation: they produce very fast series of clicks, many of them too high-pitched for human ears, and listen to the echoes bouncing back from fish, rocks or boats. The delay of an echo tells them how far away something is, and its shape gives clues about its size and nature. Bats do the same in the air, and sonars copy this principle.',
+        fr: 'Les dauphins pratiquent l\'écholocalisation : ils émettent des séries de clics très rapides, souvent trop aigus pour l\'oreille humaine, et écoutent les échos renvoyés par les poissons, les rochers ou les bateaux. Le délai d\'un écho leur indique la distance, et sa forme donne des indices sur la taille et la nature de l\'objet. Les chauves-souris font la même chose dans l\'air, et les sonars copient ce principe.',
       },
     },
 
     {
-      id: 'q08', type: 'text',
+      id: 'g07', type: 'text', shuffle: true,
+      explanationImage: 'assets/images/pistol-shrimp.jpg',       // IDEA: photo of a pistol (snapping) shrimp
       question: {
-        en: 'A T-phase (tertiary phase) on a hydrophone spectrogram arrives after P and S waves. Through which medium does it propagate?',
-        fr: 'Une phase T sur un spectrogramme d\'hydrophone arrive après les ondes P et S. Par quel milieu se propage-t-elle ?',
+        en: 'Which tiny animal snaps its claw so fast that it creates a bubble whose loud "pop" stuns its prey?',
+        fr: 'Quel petit animal claque sa pince si vite qu\'il crée une bulle dont l\'explosion sonore étourdit ses proies ?',
       },
       options: {
-        en: ['A. Through solid upper crust', 'B. Through the SOFAR channel as an acoustic wave', 'C. Along the seafloor as a Stoneley wave', 'D. Through atmosphere as infrasound'],
-        fr: ['A. La croûte supérieure solide', 'B. Via le canal SOFAR comme onde acoustique', 'C. Le long du fond marin (onde de Stoneley)', 'D. L\'atmosphère comme onde infrasonore'],
+        en: ['Pistol shrimp', 'Seahorse', 'Clownfish', 'Starfish'],
+        fr: ['Crevette pistolet', 'Hippocampe', 'Poisson-clown', 'Étoile de mer'],
       },
-      correct: 1,
+      correct: 0,
       explanation: {
-        en: 'The T-phase converts from a seismic wave at a continent or seamount, then travels through the SOFAR channel as an acoustic wave, losing very little energy over thousands of kilometres.',
-        fr: 'La phase T se convertit en onde acoustique au niveau d\'un continent ou d\'un mont sous-marin, puis se propage via le canal SOFAR en perdant très peu d\'énergie sur des milliers de kilomètres.',
+        en: 'The pistol shrimp (or snapping shrimp) closes its big claw so fast that it shoots out a jet of water and creates a bubble that collapses with a loud bang — one of the loudest sounds made by any marine animal — which can stun small prey. Thousands of snapping shrimp together produce a constant crackling, like bacon frying, typical of warm shallow reefs.',
+        fr: 'La crevette pistolet (ou crevette claqueuse) referme sa grosse pince si vite qu\'elle projette un jet d\'eau et crée une bulle qui implose dans un grand bruit sec — l\'un des sons les plus forts produits par un animal marin — capable d\'étourdir de petites proies. Des milliers de crevettes ensemble produisent un crépitement continu, comme du bacon qui grille, typique des récifs chauds et peu profonds.',
       },
     },
 
+    {
+      id: 'g08', type: 'text', shuffle: true,
+      // IMAGE IDEA (question): photo of a hydrophone →  type: 'image',  media: 'assets/images/hydrophone.jpg',
+      question: {
+        en: 'What is the name of the microphone that scientists use to listen under water?',
+        fr: 'Comment s\'appelle le microphone que les scientifiques utilisent pour écouter sous l\'eau ?',
+      },
+      options: {
+        en: ['Hydrophone', 'Aquaphone', 'Stethoscope', 'Periscope'],
+        fr: ['Hydrophone', 'Aquaphone', 'Stéthoscope', 'Périscope'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'A hydrophone (from the Greek for "water" and "sound") is a waterproof microphone. It turns the tiny pressure changes of a sound wave into an electrical signal. Scientists leave hydrophones on the seabed or under buoys for months to listen to whales, fish, ships and earthquakes.',
+        fr: 'Un hydrophone (du grec pour « eau » et « son ») est un microphone étanche. Il transforme les minuscules variations de pression d\'une onde sonore en signal électrique. Les scientifiques laissent des hydrophones sur le fond ou sous des bouées pendant des mois pour écouter les baleines, les poissons, les bateaux et les séismes.',
+      },
+    },
+
+    {
+      id: 'g09', type: 'text', shuffle: true,
+      explanationImage: 'assets/images/ship-noise.jpg',          // IDEA: photo of a cargo ship, or a map of world shipping routes
+      question: {
+        en: 'Why is the noise of ships a problem for whales?',
+        fr: 'Pourquoi le bruit des bateaux pose-t-il problème aux baleines ?',
+      },
+      options: {
+        en: ['It covers up the calls they use to communicate and find food', 'It heats up the water around the ship', 'It makes the whales fall asleep', 'It makes the sea level rise near ports'],
+        fr: ['Il couvre les appels qu\'elles utilisent pour communiquer et se nourrir', 'Il réchauffe l\'eau autour du navire', 'Il endort les baleines', 'Il fait monter le niveau de la mer près des ports'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'Whales depend on sound to talk to each other, find mates and feed. The low rumble of ship engines travels over huge distances and "masks" their calls, a bit like trying to have a conversation next to a motorway. Slower ships and quieter propellers help reduce the problem.',
+        fr: 'Les baleines dépendent du son pour communiquer entre elles, trouver des partenaires et se nourrir. Le grondement grave des moteurs de navires voyage sur de très grandes distances et « masque » leurs appels, un peu comme si l\'on essayait de discuter au bord d\'une autoroute. Des navires plus lents et des hélices plus silencieuses aident à réduire le problème.',
+      },
+    },
+
+    {
+      id: 'g10', type: 'text', shuffle: true,
+      explanationImage: 'assets/images/ocean-soundscape.png',    // IDEA: spectrogram of an ocean soundscape (fish, whales, ships…) with labels
+      question: {
+        en: 'The famous explorer Jacques Cousteau called his book and film "The Silent World". Is the ocean really silent?',
+        fr: 'Le célèbre explorateur Jacques Cousteau a intitulé son livre et son film « Le Monde du silence ». L\'océan est-il vraiment silencieux ?',
+      },
+      options: {
+        en: ['No — animals, waves, rain, ships and earthquakes fill it with sound', 'Yes — sound cannot travel through water', 'Yes — fish and whales never make any sound', 'Only the deep sea is noisy'],
+        fr: ['Non — animaux, vagues, pluie, bateaux et séismes le remplissent de sons', 'Oui — le son ne peut pas se propager dans l\'eau', 'Oui — les poissons et les baleines ne font jamais de bruit', 'Seules les grandes profondeurs sont bruyantes'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'The sea is anything but silent! Fish grunt and croak, whales sing, shrimp crackle, and waves, rain, ice and underwater earthquakes add their own noises. Human activities such as shipping, construction and sonars add even more. Listening to this "soundscape" with hydrophones is one of the ways scientists study life in the ocean.',
+        fr: 'La mer est tout sauf silencieuse ! Les poissons grognent et coassent, les baleines chantent, les crevettes crépitent, et les vagues, la pluie, la glace et les séismes sous-marins ajoutent leurs bruits. Les activités humaines (trafic maritime, travaux, sonars) en ajoutent encore. Écouter ce « paysage sonore » avec des hydrophones est l\'une des façons d\'étudier la vie dans l\'océan.',
+      },
+    },
+
+    {
+      id: 'g11', type: 'text', shuffle: true,
+      explanationImage: 'assets/images/hearing-ranges.png',     // IDEA: chart of hearing ranges (human, blue whale, dolphin…)
+      question: {
+        en: 'Blue whales call at pitches so low that we can hardly hear them. What are sounds too low for human ears called?',
+        fr: 'Les baleines bleues émettent des sons si graves que nous les entendons à peine. Comment appelle-t-on les sons trop graves pour l\'oreille humaine ?',
+      },
+      options: {
+        en: ['Infrasound', 'Ultrasound', 'Microsound', 'Megasound'],
+        fr: ['Infrasons', 'Ultrasons', 'Microsons', 'Mégasons'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'Humans hear sounds from about 20 Hz to 20,000 Hz. Blue whales produce calls at around 10–40 Hz, partly below what we can hear: this is infrasound, which travels very far in the ocean. The opposite — sounds too high for us, above 20,000 Hz, like many dolphin clicks — is called ultrasound.',
+        fr: 'L\'être humain entend des sons d\'environ 20 Hz à 20 000 Hz. Les baleines bleues émettent des appels vers 10–40 Hz, en partie sous ce que nous entendons : ce sont des infrasons, qui voyagent très loin dans l\'océan. À l\'inverse, les sons trop aigus pour nous, au-dessus de 20 000 Hz, comme beaucoup de clics de dauphins, sont des ultrasons.',
+      },
+    },
+
+    {
+      id: 'g12', type: 'text', shuffle: true,
+      explanationImage: 'assets/images/tsunami-formation.png',  // IDEA: diagram showing how a seafloor earthquake creates a tsunami
+      question: {
+        en: 'What most often causes a tsunami?',
+        fr: 'Quelle est la cause la plus fréquente d\'un tsunami ?',
+      },
+      options: {
+        en: ['An earthquake under the sea', 'Strong winds at the surface', 'The pull of the Moon', 'A very large ship'],
+        fr: ['Un séisme sous la mer', 'De forts vents à la surface', 'L\'attraction de la Lune', 'Un très gros navire'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'Most tsunamis are caused by undersea earthquakes: when the seafloor suddenly rises or drops, it pushes a huge volume of water. The waves can then cross a whole ocean at the speed of a jet plane (up to about 800 km/h) and grow tall near the coast. Underwater landslides and volcanic eruptions can also trigger tsunamis.',
+        fr: 'La plupart des tsunamis sont causés par des séismes sous-marins : quand le fond de la mer se soulève ou s\'affaisse brusquement, il déplace un énorme volume d\'eau. Les vagues peuvent alors traverser un océan entier à la vitesse d\'un avion de ligne (jusqu\'à environ 800 km/h) et grandir près des côtes. Des glissements de terrain sous-marins et des éruptions volcaniques peuvent aussi déclencher des tsunamis.',
+      },
+    },
+
+    {
+      id: 'g13', type: 'text', shuffle: true,
+      // IMAGE IDEA (question): world map with the Ring of Fire highlighted →  type: 'image',  media: 'assets/images/ring-of-fire.png',
+      question: {
+        en: 'Most of the world\'s earthquakes and volcanoes occur along a huge horseshoe-shaped zone around the Pacific Ocean. What is it called?',
+        fr: 'La plupart des séismes et des volcans du monde se trouvent le long d\'une immense zone en fer à cheval autour de l\'océan Pacifique. Comment s\'appelle-t-elle ?',
+      },
+      options: {
+        en: ['The Ring of Fire', 'The Ring of Ice', 'The Blue Belt', 'The Magma Circle'],
+        fr: ['La ceinture de feu', 'L\'anneau de glace', 'La ceinture bleue', 'Le cercle de magma'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'The Pacific "Ring of Fire" is about 40,000 km long. It follows the edges of tectonic plates, where one plate slides beneath another. Around 90% of the world\'s earthquakes and about three quarters of its active volcanoes are found there.',
+        fr: 'La « ceinture de feu » du Pacifique mesure environ 40 000 km. Elle suit les bords des plaques tectoniques, là où une plaque glisse sous une autre. Environ 90 % des séismes du monde et près des trois quarts de ses volcans actifs s\'y trouvent.',
+      },
+    },
+
+    {
+      id: 'g14', type: 'text', shuffle: true,
+      // IMAGE IDEA (question): a seismogram showing P, S and surface waves →  type: 'image',  media: 'assets/images/seismogram.png',
+      question: {
+        en: 'When an earthquake happens, which waves reach a seismometer first?',
+        fr: 'Lorsqu\'un séisme se produit, quelles ondes atteignent un sismomètre en premier ?',
+      },
+      options: {
+        en: ['P waves (primary waves)', 'S waves (secondary waves)', 'Surface waves', 'Tsunami waves'],
+        fr: ['Les ondes P (primaires)', 'Les ondes S (secondaires)', 'Les ondes de surface', 'Les vagues de tsunami'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'P waves ("primary") are the fastest seismic waves, about 6 km per second in the crust, and they compress and stretch the rock like a spring. S waves ("secondary") are slower and cannot cross liquids. Surface waves arrive last but often shake the most. The delay between the P and S waves tells scientists how far away the earthquake was.',
+        fr: 'Les ondes P (« primaires ») sont les ondes sismiques les plus rapides, environ 6 km par seconde dans la croûte, et elles compriment et étirent la roche comme un ressort. Les ondes S (« secondaires ») sont plus lentes et ne traversent pas les liquides. Les ondes de surface arrivent en dernier mais secouent souvent le plus. Le décalage entre les ondes P et S permet aux scientifiques de calculer la distance du séisme.',
+      },
+    },
+
+    {
+      id: 'g15', type: 'text', shuffle: true,
+      explanationImage: 'assets/images/sofar-channel.png',      // IDEA: diagram of the SOFAR sound channel
+      question: {
+        en: 'Can an earthquake under the seabed be "heard" by underwater microphones thousands of kilometres away?',
+        fr: 'Un séisme sous le fond marin peut-il être « entendu » par des microphones sous-marins situés à des milliers de kilomètres ?',
+      },
+      options: {
+        en: ['Yes — sound travels very far in the ocean, especially in a natural "sound channel"', 'No — sound fades away after only a few kilometres', 'Yes — but only microphones on ships can hear it', 'No — earthquakes are completely silent'],
+        fr: ['Oui — le son voyage très loin dans l\'océan, surtout dans un « canal sonore » naturel', 'Non — le son s\'éteint après seulement quelques kilomètres', 'Oui — mais seuls des microphones sur des navires peuvent l\'entendre', 'Non — les séismes sont totalement silencieux'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'Undersea earthquakes release low-pitched sounds called T waves. They travel through the SOFAR channel, a natural layer about 1 km deep where sound is trapped and can cross thousands of kilometres with very little loss. Networks of hydrophones can therefore detect earthquakes — even small ones — that land stations miss.',
+        fr: 'Les séismes sous-marins libèrent des sons graves appelés ondes T. Elles se propagent dans le canal SOFAR, une couche naturelle située vers 1 km de profondeur où le son reste piégé et peut parcourir des milliers de kilomètres avec très peu de pertes. Des réseaux d\'hydrophones peuvent ainsi détecter des séismes — même petits — que les stations terrestres ne perçoivent pas.',
+      },
+    },
+
+    /* ══════════════════════════════════════════════════════════
+       SPECTROGRAM QUESTION
+       ══════════════════════════════════════════════════════════ */
     {
       id: 'q09', type: 'image',
       media: 'assets/images/bottlenosedolphin_1.png',
@@ -553,75 +713,6 @@ const Questions = (() => {
       },
     },
 
-    {
-      id: 'q10', type: 'image',
-      media: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/SOFAR_channel.svg/800px-SOFAR_channel.svg.png',
-      question: {
-        en: 'The diagram shows a sound-speed profile with a distinct minimum at depth. What phenomenon does this minimum create?',
-        fr: 'Le diagramme montre un profil de vitesse du son avec un minimum à une certaine profondeur. Quel phénomène ce minimum crée-t-il ?',
-      },
-      options: {
-        en: ['A. A thermocline blocking all sound', 'B. The SOFAR channel — a natural waveguide', 'C. A pressure node amplifying surface waves', 'D. An acoustic shadow zone near the surface'],
-        fr: ['A. Une thermocline bloquant tous les sons', 'B. Le canal SOFAR — un guide d\'ondes naturel', 'C. Un nœud de pression amplifiant les ondes de surface', 'D. Une zone d\'ombre acoustique en surface'],
-      },
-      correct: 1,
-      explanation: {
-        en: 'Sound rays bend toward lower-speed regions (Snell\'s law). The speed minimum at ~800–1000 m depth acts as an axis around which rays oscillate, trapping energy for propagation over thousands of km.',
-        fr: 'Les rayons sonores se courbent vers les régions de vitesse inférieure (loi de Snell). Le minimum de vitesse à ~800–1000 m sert d\'axe autour duquel les rayons oscillent, piégeant l\'énergie sur des milliers de km.',
-      },
-    },
-
-    {
-      id: 'q11', type: 'image',
-      media: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Seismic_waves.svg/800px-Seismic_waves.svg.png',
-      question: {
-        en: 'Looking at the seismic wave diagram, which wave type travels only along the Earth\'s surface and cannot propagate through the deep ocean interior?',
-        fr: 'Dans ce diagramme des ondes sismiques, quel type d\'onde se propage uniquement en surface et ne peut pas traverser les profondeurs de l\'océan ?',
-      },
-      options: {
-        en: ['A. P-waves (compressional)', 'B. S-waves (shear)', 'C. Surface waves (Rayleigh / Love)', 'D. T-waves (acoustic)'],
-        fr: ['A. Ondes P (compression)', 'B. Ondes S (cisaillement)', 'C. Ondes de surface (Rayleigh / Love)', 'D. Ondes T (acoustiques)'],
-      },
-      correct: 2,
-      explanation: {
-        en: 'Surface waves (Rayleigh and Love) travel along the Earth\'s surface and decay with depth. P-waves traverse any medium; S-waves through solids only; T-waves travel acoustically through the ocean.',
-        fr: 'Les ondes de surface (Rayleigh et Love) se propagent en surface et décroissent avec la profondeur. Les P traversent tout milieu ; les S uniquement les solides ; les T se propagent acoustiquement dans l\'eau.',
-      },
-    },
-
-    {
-      id: 'q12', type: 'text',
-      question: {
-        en: 'In the open ocean, sound speed increases with depth below the SOFAR axis primarily because of which factor?',
-        fr: 'Dans l\'océan ouvert, la vitesse du son augmente avec la profondeur sous l\'axe SOFAR principalement en raison de quel facteur ?',
-      },
-      options: {
-        en: ['A. Increasing temperature', 'B. Decreasing salinity', 'C. Increasing hydrostatic pressure', 'D. Dissolved CO₂'],
-        fr: ['A. Augmentation de la température', 'B. Diminution de la salinité', 'C. Augmentation de la pression hydrostatique', 'D. CO₂ dissous'],
-      },
-      correct: 2,
-      explanation: {
-        en: 'Below the SOFAR axis, temperature is nearly constant. Sound speed then increases at ~+0.017 m/s per metre depth due to rising hydrostatic pressure compressing the water.',
-        fr: 'Sous l\'axe SOFAR, la température est quasi constante. La vitesse du son augmente alors de ~+0,017 m/s par mètre de profondeur en raison de la pression hydrostatique croissante.',
-      },
-    },
-
-    {
-      id: 'q13', type: 'text',
-      question: {
-        en: 'A convergence zone (CZ) is a region of elevated sound intensity at the ocean surface. Approximately how far is the first CZ in typical North Atlantic conditions?',
-        fr: 'Une zone de convergence (ZC) est une région d\'intensité sonore élevée en surface. À quelle distance se situe la première ZC en Atlantique Nord ?',
-      },
-      options: {
-        en: ['A. ~1–5 km', 'B. ~30–60 km', 'C. ~60–100 km', 'D. ~500–1000 km'],
-        fr: ['A. ~1–5 km', 'B. ~30–60 km', 'C. ~60–100 km', 'D. ~500–1000 km'],
-      },
-      correct: 2,
-      explanation: {
-        en: 'In the North Atlantic, the first convergence zone typically occurs at 60–100 km. Sound rays that dive deep and refract back upward focus at the surface, creating anomalously high intensity.',
-        fr: 'En Atlantique Nord, la première zone de convergence se situe typiquement à 60–100 km. Les rayons qui plongent et remontent par réfraction se focalisent en surface, créant une intensité anormalement élevée.',
-      },
-    },
 
     /* ▼▼▼  PASTE YOUR NEW QUESTIONS HERE (above this line)  ▼▼▼ */
 
