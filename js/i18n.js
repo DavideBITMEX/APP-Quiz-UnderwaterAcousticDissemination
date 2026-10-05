@@ -80,6 +80,7 @@ const I18n = (() => {
       /* ── Misc ── */
       pts:       'pts',
       anonymous: 'Anonymous',
+      sources_label: 'Information sources:',
     },
 
     /* ════════════════════════ FRANÇAIS ════════════════════════ */
@@ -155,6 +156,7 @@ const I18n = (() => {
       /* ── Divers ── */
       pts:       'pts',
       anonymous: 'Anonyme',
+      sources_label: 'Sources des informations :',
     },
   };
 
