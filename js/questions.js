@@ -189,6 +189,7 @@ const Questions = (() => {
     {
       id: 's05', type: 'audio', shuffle: true,
       media: snd('blue-whale'),
+      explanationImage: 'assets/images/bluewhale.jpg',
       question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
       options: {
         en: ['Blue whale', 'Fishing boat', 'Container ship', 'Dolphin'],
@@ -325,23 +326,9 @@ const Questions = (() => {
     },
 
     {
-      id: 's14', type: 'audio', shuffle: true,
-      media: snd('Goby'),
-      question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
-      options: {
-        en: ['Goby', 'Barred grunt', 'Walrus', 'Pinhead pearlfish'],
-        fr: ['Gobie', 'Barred grunt', 'Morse', 'Poisson-perle'],
-      },
-      correct: 0,
-      explanation: {
-        en: 'Gobies produce various characteristic sounds: some to attract females during the breeding season (with the male either inside or outside the nest), and others to defend their territory.',
-        fr: 'Les gobies produisent différents sons caractéristiques : certains pour attirer les femelles pendant la saison de reproduction (le mâle étant dans ou hors du nid), d\'autres pour défendre leur territoire.',
-      },
-    },
-
-    {
       id: 's15', type: 'audio', shuffle: true,
       media: snd('Sound 1 - Pinhead pearlfish'),
+      explanationImage: 'assets/images/pearlfish.jpg',
       question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
       options: {
         en: ['Pinhead pearlfish', 'Toadfish', 'Fishing boat', 'Goby'],
