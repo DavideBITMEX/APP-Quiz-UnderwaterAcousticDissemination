@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AcoustiQuiz 🌊</title>
+  <title>OceanQuiz 🌊</title>
+
+  <!-- Browser-tab icon: a wave (inline SVG, no extra file needed) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a6aa8'/%3E%3Cpath d='M4 13c3-4 5-4 8 0s5 4 8 0 5-4 8 0' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M4 21c3-4 5-4 8 0s5 4 8 0 5-4 8 0' fill='none' stroke='%23aee6ff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -25,7 +29,7 @@
       <span class="hdr-credit">App created by Davide Bittelli</span>  <!-- ★ -->
     </div>
     <div class="hdr-controls">
-      <button id="theme-btn" class="zoom-btn" onclick="App.toggleTheme()" title="Light / Dark mode">☀️</button>
+      <button id="theme-btn" class="zoom-btn" onclick="App.toggleTheme()" title="Light / Dark mode">🌙</button>
       <button id="lang-btn"  class="lang-btn" onclick="App.toggleLang()">🇫🇷 FR</button>
       <div class="zoom-btns">
         <button class="zoom-btn" onclick="App.zoomOut()" title="Zoom out">−</button>
@@ -42,7 +46,7 @@
        │  Place logos in assets/images/ — missing ones auto-hide     │
        └──────────────────────────────────────────────────────────────┘ -->
   <footer id="site-footer">
-    <!-- "Funded by the European Union" logo — displayed on white pill (EU brand guidelines) -->
+    <!-- "Funded by the European Union" logo — displayed on a white pill (EU brand guidelines) -->
     <div class="eu-logo-wrap">
       <img src="assets/images/logo-eu.png" class="eu-logo" alt="Funded by the European Union"
            onerror="this.parentElement.style.display='none'">
@@ -50,8 +54,8 @@
     <span class="ftr-divider"></span>
     <p class="ftr-text">
       Funded by the European Union's Horizon Europe — Marie Skłodowska-Curie Actions
-      &nbsp;·&nbsp; <strong>SEASOUNDS</strong> (GA&nbsp;101119769)
       &nbsp;·&nbsp; <strong>BETTER</strong> (GA&nbsp;101169348)
+      &nbsp;·&nbsp; <strong>SEASOUNDS</strong> (GA&nbsp;101119769)
     </p>
     <span class="ftr-divider"></span>
     <div class="ftr-project-logos">
@@ -60,7 +64,7 @@
     </div>
   </footer>
 
-  <!-- Deep-sea background -->
+  <!-- Ocean background -->
   <div class="seabed" aria-hidden="true">
     <div class="particle"></div><div class="particle"></div><div class="particle"></div>
     <div class="particle"></div><div class="particle"></div><div class="particle"></div>
