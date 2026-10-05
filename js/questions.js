@@ -24,6 +24,24 @@ const LEVELS = {
 const LEVEL_ORDER = ['easy', 'medium', 'pro'];   // order of the cards on screen
 
 /* ============================================================
+   ★★★ 1b. INFORMATION SOURCES — shown in small print on screen ★★★
+   (edit the text freely; set to '' to hide it)
+   ============================================================ */
+const INFO_SOURCES = '© DOSITS.org, DORIS.ffessm.fr, ocr.org, weedersdigest.com, American Cetacean Society, Wikipedia';
+
+/* ============================================================
+   ★★★ 1c. SOUND FILES ★★★
+   snd('croaker') → 'assets/sounds/croaker.mp3'
+   If your sound files are not .mp3, change the extension here.
+   (A single file with another extension: write the full name,
+    e.g. snd('croaker.wav') — the extension is then kept.)
+   ============================================================ */
+const SOUND_EXT = '.mp3';
+function snd(name) {
+  return 'assets/sounds/' + (/\.\w{2,4}$/.test(name) ? name : name + SOUND_EXT);
+}
+
+/* ============================================================
    ★★★ 2. HOW TO ADD A QUESTION ★★★
    ------------------------------------------------------------
    Copy one of the templates below into the `all` list further
@@ -69,6 +87,13 @@ const LEVEL_ORDER = ['easy', 'medium', 'pro'];   // order of the cards on screen
      question: …, options: …, correct: …, explanation: …,
    },
 
+   ── Optional extras on ANY question ──
+     explanationImage: 'assets/images/my-picture.jpg',  // picture shown WITH the explanation
+     explanationImageCredit: '© Photo: NOAA',           // small credit under it (optional)
+     shuffle: true,   // answers appear in a random order every game
+                      // (then write the CORRECT answer first and use correct: 0)
+   If the explanation image file is missing, nothing is shown (no broken icon).
+
    Notes
    • `media` can be one path used for both languages, or two paths:
        media: { en: 'assets/images/fig-en.png', fr: 'assets/images/fig-fr.png' }
@@ -88,16 +113,25 @@ const Questions = (() => {
   /* ── Question database ─────────────────────────────────── */
   const all = [
 
+    /* ══════════════════════════════════════════════════════════
+       SOUND QUESTIONS (from the spreadsheet)
+       Written with the correct answer FIRST (correct: 0);
+       `shuffle: true` mixes the answer positions at every game.
+       ══════════════════════════════════════════════════════════ */
+
     {
-      id: 'q01', type: 'audio',
-      media: 'https://dosits.org/wp-content/uploads/2016/11/Hump1.mp3',
+      id: 's01', type: 'audio', shuffle: true,
+      media: snd('Humpback_whale-1'),   // or the web version: 'https://dosits.org/wp-content/uploads/2016/11/Hump1.mp3'
+      // ▼ EXAMPLE of an image shown together with the explanation (file goes in assets/images/):
+      explanationImage: 'assets/images/humpback-whale.jpg',
+      // explanationImageCredit: '© Photo: …',    // optional small credit under the picture
       question: {
-        en: 'Listen to this recording. Which animal produced this sound?',
-        fr: 'Écoutez cet enregistrement. Quel animal a produit ce son ?',
+        en: 'What produces this sound?',
+        fr: 'Qu\'est-ce qui produit ce son ?',
       },
       options: {
-        en: ['A. Humpback whale', 'B. Blue whale', 'C. Sperm whale', 'D. Dolphin'],
-        fr: ['A. Baleine à bosse', 'B. Baleine bleue', 'C. Cachalot', 'D. Dauphin'],
+        en: ['Humpback whale', 'Blue whale', 'Sperm whale', 'Dolphin'],
+        fr: ['Baleine à bosse', 'Baleine bleue', 'Cachalot', 'Dauphin'],
       },
       correct: 0,
       explanation: {
@@ -105,6 +139,280 @@ const Questions = (() => {
         fr: 'Les mâles de baleines à bosse produisent de longs chants complexes pouvant durer jusqu\'à 20 minutes, composés de séquences répétées de gémissements, de cris et de gazouillis. Ces chants évoluent culturellement au sein des populations à chaque saison de reproduction et joueraient un rôle dans l\'attraction des partenaires.',
       },
     },
+
+    {
+      id: 's02', type: 'audio', shuffle: true,
+      media: snd('croaker'),
+      question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
+      options: {
+        en: ['Atlantic croaker', 'Shrimp', 'Drum (instrument)', 'Toadfish'],
+        fr: ['Atlantic croaker', 'Crevette', 'Tambour (instrument)', 'Poisson-crapaud'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'Both male and female croakers produce sounds: adult males to court females for mating, whilst females and juveniles do so in response to fear.',
+        fr: 'Les mâles comme les femelles croakers émettent des sons : les mâles adultes pour séduire les femelles lors de la reproduction, tandis que les femelles et les juvéniles en émettent en réaction à la peur.',
+      },
+    },
+
+    {
+      id: 's03', type: 'audio', shuffle: true,
+      media: snd('Iceberg_Collisions'),
+      question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
+      options: {
+        en: ['Iceberg collision', 'Container ship', 'Earthquake', 'Motorcycle'],
+        fr: ['Collision d\'icebergs', 'Porte-conteneurs', 'Tremblement de terre', 'Moto'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'Icebergs drift. They slide against one another and collide. These impacts produce loud noises and vibrations.',
+        fr: 'Les icebergs dérivent. Ils glissent les uns contre les autres et entrent en collision. Ces chocs produisent des bruits forts et des vibrations.',
+      },
+    },
+
+    {
+      id: 's04', type: 'audio', shuffle: true,
+      media: snd('Spiny_Lobster'),
+      question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
+      options: {
+        en: ['Spiny lobster', 'Frog', 'Holocentrus rufus', 'Walrus'],
+        fr: ['Langouste', 'Grenouille', 'Holocentrus rufus', 'Morse'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'Spiny lobsters produce sounds by vibrating their muscles against their carapace to interact with potential predators or react to aggression. Research suggests that these sounds may also extend to social interactions between members of the same species.',
+        fr: 'Les langoustes produisent des sons en faisant vibrer leurs muscles contre leur carapace, pour interagir avec des prédateurs potentiels ou réagir à une agression. Des recherches suggèrent que ces sons pourraient aussi servir aux interactions sociales entre individus de la même espèce.',
+      },
+    },
+
+    {
+      id: 's05', type: 'audio', shuffle: true,
+      media: snd('blue-whale'),
+      question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
+      options: {
+        en: ['Blue whale', 'Fishing boat', 'Container ship', 'Dolphin'],
+        fr: ['Baleine bleue', 'Bateau de pêche', 'Porte-conteneurs', 'Dauphin'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'In the past, blue whales used to communicate with one another across entire oceans. Today, the distance over which these whales can hear one another has fallen by 90 per cent due to rising levels of man-made noise.',
+        fr: 'Autrefois, les baleines bleues pouvaient communiquer entre elles à travers des océans entiers. Aujourd\'hui, la distance sur laquelle elles peuvent s\'entendre a chuté de 90 % en raison de l\'augmentation du bruit d\'origine humaine.',
+      },
+    },
+
+    {
+      id: 's06', type: 'audio', shuffle: true,
+      media: snd('Barred_grunt'),
+      question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
+      options: {
+        en: ['Barred grunt', 'Woodpecker', 'Walrus', 'Hammer'],
+        fr: ['Barred grunt', 'Pic', 'Morse', 'Marteau'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'The barred grunt has teeth in the throat and gill regions; the rubbing of these teeth produces a sound that is amplified by its swim bladder.',
+        fr: 'Le barred grunt possède des dents dans la gorge et la région des branchies ; le frottement de ces dents produit un son amplifié par sa vessie natatoire.',
+      },
+    },
+
+    {
+      id: 's07', type: 'audio', shuffle: true,
+      media: snd('lights'),
+      question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
+      options: {
+        en: ['Lightning', 'Jet ski', 'Sonar', 'Blue whale'],
+        fr: ['La foudre', 'Jet-ski', 'Sonar', 'Baleine bleue'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'Lightning strikes land much more frequently than the ocean; it strikes coastal waters at a rate of around two strikes per square kilometre per year and is quasi non-existent in the Arctic and Antarctic.',
+        fr: 'La foudre frappe les terres bien plus souvent que l\'océan ; elle touche les eaux côtières à raison d\'environ deux impacts par kilomètre carré et par an, et elle est quasi inexistante en Arctique et en Antarctique.',
+      },
+    },
+
+    {
+      id: 's08', type: 'audio', shuffle: true,
+      media: snd('ship1s'),
+      question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
+      options: {
+        en: ['Container ship', 'Fishing boat', 'Sperm whale', 'Blue whale'],
+        fr: ['Porte-conteneurs', 'Bateau de pêche', 'Cachalot', 'Baleine bleue'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'Low-frequency noise generated by ships has a significant impact on the increase in ambient noise in the ocean. As a result, low-frequency ambient noise has risen by 10 to 15 decibels over the last 50 years.',
+        fr: 'Le bruit basse fréquence généré par les navires contribue fortement à l\'augmentation du bruit ambiant dans l\'océan. Ainsi, le bruit ambiant basse fréquence a augmenté de 10 à 15 décibels au cours des 50 dernières années.',
+      },
+    },
+
+    {
+      id: 's09', type: 'audio', shuffle: true,
+      media: snd('toadfishs'),
+      question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
+      options: {
+        en: ['Toadfish', 'Goby', 'Pinhead pearlfish', 'Barred grunt'],
+        fr: ['Poisson-crapaud', 'Gobie', 'Poisson-perle', 'Barred grunt'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'Toadfish can contract their swim bladders up to 300 times per second to produce certain sounds that are essential for them to find one another during the breeding season.',
+        fr: 'Les poissons-crapauds peuvent contracter leur vessie natatoire jusqu\'à 300 fois par seconde pour produire certains sons, essentiels pour se retrouver pendant la saison de reproduction.',
+      },
+    },
+
+    {
+      id: 's10', type: 'audio', shuffle: true,
+      media: snd('walruss'),
+      question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
+      options: {
+        en: ['Walrus', 'Hammer', 'Dolphin', 'Toadfish'],
+        fr: ['Morse', 'Marteau', 'Dauphin', 'Poisson-crapaud'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'Walruses are the noisiest pinnipeds and make sounds both above and below the water to communicate with their fellow walruses.',
+        fr: 'Les morses sont les pinnipèdes les plus bruyants : ils émettent des sons à la fois hors de l\'eau et sous l\'eau pour communiquer avec leurs congénères.',
+      },
+    },
+
+    {
+      id: 's11', type: 'audio', shuffle: true,
+      media: snd('Sound 1 - Fish (trumpeter perch)'),
+      question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
+      options: {
+        en: ['Trumpeter perch', 'Trumpet', 'Holocentrus rufus', 'Sonar'],
+        fr: ['Trumpeter perch', 'Trompette', 'Holocentrus rufus', 'Sonar'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'Choruses of trumpeter perch, lasting several hours, can be heard at dusk during the spawning season.',
+        fr: 'Des chœurs de trumpeter perch, pouvant durer plusieurs heures, s\'entendent au crépuscule pendant la saison de reproduction.',
+      },
+    },
+
+    {
+      id: 's12', type: 'audio', shuffle: true,
+      media: snd('Sound 2 - Sea lion (calls from a female sea lion for her pup)'),
+      question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
+      options: {
+        en: ['Sea lion', 'Whale', 'Dolphin', 'Pinhead pearlfish'],
+        fr: ['Otarie', 'Baleine', 'Dauphin', 'Poisson-perle'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'The underwater calls of sea lions enable them to establish, defend their territory and assert their dominance during the breeding season. They can also serve as a means of social interaction, such as when a female calls to her pups.',
+        fr: 'Les cris sous-marins des otaries leur permettent d\'établir et de défendre leur territoire et d\'affirmer leur dominance pendant la saison de reproduction. Ils servent aussi à l\'interaction sociale, par exemple lorsqu\'une femelle appelle son petit.',
+      },
+    },
+
+    {
+      id: 's13', type: 'audio', shuffle: true,
+      media: snd('Earthquake'),
+      question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
+      options: {
+        en: ['Earthquake', 'Container ship', 'Blue whale', 'Lightning'],
+        fr: ['Tremblement de terre', 'Porte-conteneurs', 'Baleine bleue', 'La foudre'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'When the ocean floor shifts and causes undersea earthquakes, the low-frequency sounds produced can be heard over very long distances, sometimes thousands of kilometres away. The duration and amplitude of the sound depend on the magnitude of the earthquake.',
+        fr: 'Lorsque le plancher océanique se déplace et provoque des séismes sous-marins, les sons basse fréquence produits peuvent s\'entendre sur de très longues distances, parfois à des milliers de kilomètres. La durée et l\'amplitude du son dépendent de la magnitude du séisme.',
+      },
+    },
+
+    {
+      id: 's14', type: 'audio', shuffle: true,
+      media: snd('Sound 6 - Goby grunts'),
+      question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
+      options: {
+        en: ['Goby', 'Barred grunt', 'Walrus', 'Pinhead pearlfish'],
+        fr: ['Gobie', 'Barred grunt', 'Morse', 'Poisson-perle'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'Gobies produce various characteristic sounds: some to attract females during the breeding season (with the male either inside or outside the nest), and others to defend their territory.',
+        fr: 'Les gobies produisent différents sons caractéristiques : certains pour attirer les femelles pendant la saison de reproduction (le mâle étant dans ou hors du nid), d\'autres pour défendre leur territoire.',
+      },
+    },
+
+    {
+      id: 's15', type: 'audio', shuffle: true,
+      media: snd('Sound 1 - Pinhead pearlfish'),
+      question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
+      options: {
+        en: ['Pinhead pearlfish', 'Toadfish', 'Fishing boat', 'Goby'],
+        fr: ['Poisson-perle', 'Poisson-crapaud', 'Bateau de pêche', 'Gobie'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'Pearlfish live inside sea cucumbers (or other hosts such as starfish and oysters) and leave them at night to feed. Their sounds are short, repeated knocks, made by a swim-bladder mechanism in which a muscle slowly pulls on a thin membrane that then snaps back — a trick that researchers describe as unique in the animal world. They are mostly heard when several fish share the same host, and the host\'s body barely muffles the sound.',
+        fr: 'Les poissons-perles vivent à l\'intérieur de concombres de mer (ou d\'autres hôtes comme les étoiles de mer et les huîtres) et en sortent la nuit pour se nourrir. Leurs sons sont de courts coups répétés, produits par un mécanisme de la vessie natatoire : un muscle tire lentement sur une fine membrane qui se détend ensuite d\'un coup — un procédé que les chercheurs décrivent comme unique dans le monde animal. On les entend surtout lorsque plusieurs poissons partagent le même hôte, dont le corps étouffe à peine le son.',
+      },
+    },
+
+    {
+      id: 's16', type: 'audio', shuffle: true,
+      media: snd('4_Holocentrus rufus'),
+      question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
+      options: {
+        en: ['Holocentrus rufus', 'Goby', 'Toadfish', 'Trumpet'],
+        fr: ['Holocentrus rufus', 'Gobie', 'Poisson-crapaud', 'Trompette'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'Holocentrus rufus are capable of producing sounds by causing their ribs to vibrate against their swim bladder (a gas-filled sac), which is in contact with the inner ear: this adaptation may enhance their hearing abilities.',
+        fr: 'Holocentrus rufus est capable de produire des sons en faisant vibrer ses côtes contre sa vessie natatoire (une poche remplie de gaz), en contact avec l\'oreille interne : cette adaptation pourrait améliorer son audition.',
+      },
+    },
+
+    {
+      id: 's17', type: 'audio', shuffle: true,
+      media: snd('Explosion'),
+      question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
+      options: {
+        en: ['Explosion', 'Lightning', 'Sonar', 'Container ship'],
+        fr: ['Une explosion', 'La foudre', 'Sonar', 'Porte-conteneurs'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'The signals generated by underwater explosions can travel hundreds of kilometres; they have a varying degree of impact on the biodiversity surrounding the epicentre of the explosion.',
+        fr: 'Les signaux générés par les explosions sous-marines peuvent parcourir des centaines de kilomètres ; ils ont un impact plus ou moins important sur la biodiversité autour de l\'épicentre de l\'explosion.',
+      },
+    },
+
+    {
+      id: 's18', type: 'audio', shuffle: true,
+      media: snd('Sonar'),
+      question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
+      options: {
+        en: ['Sonar', 'Fishing boat', 'Dolphin', 'Walrus'],
+        fr: ['Sonar', 'Bateau de pêche', 'Dauphin', 'Morse'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'The sound travels from the source, and reverberations and echoes are heard in return; they bounce off objects and marine life in the ocean. This also makes it possible to tell whether an object is moving towards or away from the transmitter.',
+        fr: 'Le son part de la source, et des réverbérations et des échos reviennent : ils rebondissent sur les objets et sur la vie marine. Cela permet aussi de savoir si un objet se rapproche ou s\'éloigne de l\'émetteur.',
+      },
+    },
+
+    {
+      id: 's19', type: 'audio', shuffle: true,
+      media: snd('FishingBoat'),
+      question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
+      options: {
+        en: ['Fishing boat', 'Jet ski', 'Earthquake', 'Humpback whale'],
+        fr: ['Bateau de pêche', 'Jet-ski', 'Tremblement de terre', 'Baleine à bosse'],
+      },
+      correct: 0,
+      explanation: {
+        en: 'Studies show that noise from boats affects fish in their search for food and their ability to detect approaching predators, leading to increased mortality.',
+        fr: 'Des études montrent que le bruit des bateaux perturbe la recherche de nourriture des poissons et leur capacité à détecter les prédateurs qui approchent, ce qui entraîne une hausse de la mortalité.',
+      },
+    },
+
+    /* ══════════════════════════════════════════════════════════
+       OTHER QUESTIONS (spectrograms, diagrams, text)
+       ══════════════════════════════════════════════════════════ */
 
     {
       id: 'q02', type: 'audio',
@@ -338,6 +646,29 @@ const Questions = (() => {
     return q.media[lang] || q.media.en || q.media.fr || null;
   }
 
+  /* Explanation picture (optional): returns { src, credit } or null.
+     Both fields may be a string or { en: '…', fr: '…' }.           */
+  function pick(v, lang) {
+    if (!v) return null;
+    return typeof v === 'string' ? v : (v[lang] || v.en || v.fr || null);
+  }
+  function getExplanationImage(q, lang) {
+    const src = pick(q.explanationImage, lang);
+    return src ? { src, credit: pick(q.explanationImageCredit, lang) } : null;
+  }
+
+  /* With `shuffle: true` the answers are mixed (same order in EN and FR,
+     `correct` follows the right answer).                                */
+  function withShuffledOptions(q) {
+    if (!q.shuffle) return q;
+    const order = shuffle(q.options.en.map((_, i) => i));
+    return {
+      ...q,
+      options: { en: order.map(i => q.options.en[i]), fr: order.map(i => q.options.fr[i]) },
+      correct: order.indexOf(q.correct),
+    };
+  }
+
   /* A question is playable only if the essentials are present. */
   function isPlayable(q) {
     return ['en', 'fr'].every(l =>
@@ -381,9 +712,9 @@ const Questions = (() => {
   function getQuestions(level) {
     const cfg = LEVELS[level];
     const n = cfg ? cfg.questions : poolSize();
-    return shuffle(all.filter(isPlayable)).slice(0, n);
+    return shuffle(all.filter(isPlayable)).slice(0, n).map(withShuffledOptions);
   }
 
-  return { getQuestions, getMedia, poolSize };
+  return { getQuestions, getMedia, getExplanationImage, poolSize };
 
 })();
