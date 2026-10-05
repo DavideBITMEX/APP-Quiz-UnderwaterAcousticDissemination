@@ -158,6 +158,7 @@ const Questions = (() => {
     {
       id: 's03', type: 'audio', shuffle: true,
       media: snd('Iceberg_Collisions'),
+      explanationImage: 'assets/images/iceberg.jpg',
       question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
       options: {
         en: ['Iceberg collision', 'Container ship', 'Earthquake', 'Motorcycle'],
@@ -233,6 +234,7 @@ const Questions = (() => {
     {
       id: 's08', type: 'audio', shuffle: true,
       media: snd('ship1s'),
+      explanationImage: 'assets/images/cargoship.jpg',
       question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
       options: {
         en: ['Container ship', 'Fishing boat', 'Sperm whale', 'Blue whale'],
@@ -248,6 +250,7 @@ const Questions = (() => {
     {
       id: 's09', type: 'audio', shuffle: true,
       media: snd('toadfishs'),
+      explanationImage: 'assets/images/toadfish.jpg',
       question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
       options: {
         en: ['Toadfish', 'Goby', 'Pinhead pearlfish', 'Barred grunt'],
@@ -263,6 +266,7 @@ const Questions = (() => {
     {
       id: 's10', type: 'audio', shuffle: true,
       media: snd('walruss'),
+      explanationImage: 'assets/images/walrus.jpg',
       question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
       options: {
         en: ['Walrus', 'Hammer', 'Dolphin', 'Toadfish'],
@@ -322,7 +326,7 @@ const Questions = (() => {
 
     {
       id: 's14', type: 'audio', shuffle: true,
-      media: snd('Sound 6 - Goby grunts'),
+      media: snd('Goby'),
       question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
       options: {
         en: ['Goby', 'Barred grunt', 'Walrus', 'Pinhead pearlfish'],
@@ -353,6 +357,7 @@ const Questions = (() => {
     {
       id: 's16', type: 'audio', shuffle: true,
       media: snd('4_Holocentrus rufus'),
+      explanationImage: 'assets/images/holocentrus_rufus.jpg',
       question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
       options: {
         en: ['Holocentrus rufus', 'Goby', 'Toadfish', 'Trumpet'],
@@ -368,6 +373,7 @@ const Questions = (() => {
     {
       id: 's17', type: 'audio', shuffle: true,
       media: snd('Explosion'),
+       explanationImage: 'assets/images/explosion.png',
       question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
       options: {
         en: ['Explosion', 'Lightning', 'Sonar', 'Container ship'],
@@ -443,7 +449,7 @@ const Questions = (() => {
 
     {
       id: 'g02', type: 'text', shuffle: true,
-      explanationImage: 'assets/images/sonar-echo.png',         // IDEA: diagram of a ship sending a sonar ping and receiving the echo
+      explanationImage: 'assets/images/sonar-echo.jpg',         // IDEA: diagram of a ship sending a sonar ping and receiving the echo
       question: {
         en: 'How does a ship\'s sonar measure how deep the sea is?',
         fr: 'Comment le sonar d\'un navire mesure-t-il la profondeur de la mer ?',
@@ -479,7 +485,7 @@ const Questions = (() => {
 
     {
       id: 'g04', type: 'text', shuffle: true,
-      explanationImage: 'assets/images/ocean-light-zones.png',  // IDEA: diagram of the ocean's light zones (sunlit / twilight / dark)
+      explanationImage: 'assets/images/ocean-light-zones.jpg',  // IDEA: diagram of the ocean's light zones (sunlit / twilight / dark)
       question: {
         en: 'Why do so many sea animals use sound, rather than sight, to communicate and find food?',
         fr: 'Pourquoi tant d\'animaux marins utilisent-ils le son plutôt que la vue pour communiquer et trouver de la nourriture ?',
@@ -515,7 +521,7 @@ const Questions = (() => {
 
     {
       id: 'g06', type: 'text', shuffle: true,
-      explanationImage: 'assets/images/dolphin-echolocation.png',   // IDEA: diagram of a dolphin sending clicks and receiving echoes
+      explanationImage: 'assets/images/dolphin-echolocation.jpg',   // IDEA: diagram of a dolphin sending clicks and receiving echoes
       question: {
         en: 'How do dolphins "see" their prey in dark or murky water?',
         fr: 'Comment les dauphins « voient »-ils leurs proies dans une eau sombre ou trouble ?',
@@ -677,7 +683,7 @@ const Questions = (() => {
 
     {
       id: 'g15', type: 'text', shuffle: true,
-      explanationImage: 'assets/images/sofar-channel.png',      // IDEA: diagram of the SOFAR sound channel
+      explanationImage: 'assets/images/sofar-channel.jpg',      // IDEA: diagram of the SOFAR sound channel
       question: {
         en: 'Can an earthquake under the seabed be "heard" by underwater microphones thousands of kilometres away?',
         fr: 'Un séisme sous le fond marin peut-il être « entendu » par des microphones sous-marins situés à des milliers de kilomètres ?',
