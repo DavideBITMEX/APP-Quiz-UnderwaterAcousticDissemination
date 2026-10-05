@@ -193,7 +193,7 @@ const App = (() => {
     const sp = document.getElementById('score-pill');
     if (sp) sp.textContent = `${I18n.t('score_label')}: ${state.score}`;
 
-    if (nw) setTimeout(() => nw.scrollIntoView({ behavior: 'smooth', block: 'center' }), 60);
+    if (nw) setTimeout(() => nw.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 60);   // scroll only as much as needed
   }
 
   function nextQuestion() {
