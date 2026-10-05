@@ -1,41 +1,86 @@
 /* ============================================================
-   OceanQuiz — Question Database
+   OceanQuiz — Levels & Question Database
    ============================================================
-   ★★★ CONFIGURATION — change these two numbers as needed ★★★
+
+   ★★★ 1. LEVELS — change difficulty settings here ★★★
+   ------------------------------------------------------------
+   questions         → how many questions are asked at this level
+                       (if your pool is smaller, all questions are used)
+   pointsPerQuestion → points won for each correct answer
+   minutes           → rough duration, only DISPLAYED on the level card
+   icon              → emoji shown on the level card
+
+   Max score of a level = questions × pointsPerQuestion
+   (e.g. Easy 5 × 10 = 50  ·  Medium 10 × 15 = 150  ·  Pro 15 × 20 = 300)
+   Harder levels give more questions AND more points per answer,
+   so a good Pro run always ranks above a good Easy run on the leaderboard.
    ============================================================ */
 
-const QUESTIONS_PER_CATEGORY  = 10;   // max shown per category (Acoustics / Visual / Wave)
-                                       // if fewer questions exist, all are used
-const QUESTIONS_MIXED_PER_CAT =  5;   // per category in Mixed mode → 3 × 5 = 15 total
-                                       // if fewer exist in a category, all of them are used
+const LEVELS = {
+  easy:   { questions:  5, pointsPerQuestion: 10, minutes: 2, icon: '🐟' },
+  medium: { questions: 10, pointsPerQuestion: 15, minutes: 5, icon: '🐬' },
+  pro:    { questions: 15, pointsPerQuestion: 20, minutes: 8, icon: '🐋' },
+};
+const LEVEL_ORDER = ['easy', 'medium', 'pro'];   // order of the cards on screen
 
 /* ============================================================
-   HOW TO ADD A QUESTION
-   ─────────────────────────────────────────────────────────────
-   Copy this template into the `all` array below and fill it in.
-   Only `media` is optional — set to null if no file yet.
+   ★★★ 2. HOW TO ADD A QUESTION ★★★
+   ------------------------------------------------------------
+   Copy one of the templates below into the `all` list further
+   down (before the line "add new questions above this line"),
+   then fill it in. Every question needs a comma after its
+   closing brace.
 
+   type can be:  'text'  (no media, just a question)
+                 'audio' (a sound the player can listen to)
+                 'image' (spectrogram, diagram, photo…)
+                 'video' (short clip)
+
+   ── Text question ──
    {
-     id:       'unique-id',
-     category: 'acoustics' | 'visual' | 'wave',
-     type:     'audio' | 'image' | 'diagram',
-     media: { en: 'assets/sounds/file.ogg', fr: 'assets/sounds/file.ogg' },
-     // ↑ use null for missing files; set a URL or relative path
-
-     question: { en: 'Question in English?', fr: 'Question en français ?' },
+     id: 'q14', type: 'text',
+     question:    { en: 'English question?', fr: 'Question en français ?' },
      options: {
-       en: ['A. Option1', 'B. Option2', 'C. Option3', 'D. Option4'],
-       fr: ['A. Option1', 'B. Option2', 'C. Option3', 'D. Option4'],
+       en: ['A. First', 'B. Second', 'C. Third', 'D. Fourth'],
+       fr: ['A. Premier', 'B. Deuxième', 'C. Troisième', 'D. Quatrième'],
      },
-     correct: 0,   // 0 = A, 1 = B, 2 = C, 3 = D
-
-     explanation: { en: 'Why this is correct...', fr: 'Pourquoi c\'est correct...' },
+     correct: 2,                      // 0 = A, 1 = B, 2 = C, 3 = D
+     explanation: { en: 'Why it is correct…', fr: 'Pourquoi c\'est correct…' },
    },
 
-   Put media files in:
-     assets/sounds/   → .mp3 or .ogg
-     assets/images/   → spectrograms, diagrams
-     assets/videos/   → videos
+   ── Audio question ── (file goes in assets/sounds/)
+   {
+     id: 'q15', type: 'audio',
+     media: 'assets/sounds/my-sound.mp3',
+     question: …, options: …, correct: …, explanation: …,
+   },
+
+   ── Image question ── (file goes in assets/images/)
+   {
+     id: 'q16', type: 'image',
+     media: 'assets/images/my-spectrogram.png',
+     question: …, options: …, correct: …, explanation: …,
+   },
+
+   ── Video question ── (file goes in assets/videos/)
+   {
+     id: 'q17', type: 'video',
+     media: 'assets/videos/my-clip.mp4',
+     question: …, options: …, correct: …, explanation: …,
+   },
+
+   Notes
+   • `media` can be one path used for both languages, or two paths:
+       media: { en: 'assets/images/fig-en.png', fr: 'assets/images/fig-fr.png' }
+   • The "A." "B." prefixes in the options are optional — the app adds
+     the letters itself.
+   • `id` is just a label for you (keep it unique).
+   • File names are case-sensitive on GitHub Pages:
+     'Whale.PNG' and 'whale.png' are NOT the same file.
+   • After editing, open the site, press F12 → Console: the app lists
+     any mistake it finds in your questions (missing translation,
+     wrong `correct` index, …). A broken question is skipped instead
+     of crashing the quiz.
    ============================================================ */
 
 const Questions = (() => {
@@ -43,18 +88,12 @@ const Questions = (() => {
   /* ── Question database ─────────────────────────────────── */
   const all = [
 
-    /* ══════════════════════════════════════════════════════
-       ACOUSTICS
-       ══════════════════════════════════════════════════════ */
     {
-      id: 'aq1', category: 'acoustics', type: 'audio',
-      media: {
-        en: 'https://dosits.org/wp-content/uploads/2016/11/Hump1.mp3',
-        fr: 'https://dosits.org/wp-content/uploads/2016/11/Hump1.mp3',
-      },
+      id: 'q01', type: 'audio',
+      media: 'https://dosits.org/wp-content/uploads/2016/11/Hump1.mp3',
       question: {
-        en: 'Listen to this recording. Which animal produced this low-frequency sound?',
-        fr: 'Écoutez cet enregistrement. Quel animal a produit ce son basse fréquence ?',
+        en: 'Listen to this recording. Which animal produced this sound?',
+        fr: 'Écoutez cet enregistrement. Quel animal a produit ce son ?',
       },
       options: {
         en: ['A. Humpback whale', 'B. Blue whale', 'C. Sperm whale', 'D. Dolphin'],
@@ -68,11 +107,8 @@ const Questions = (() => {
     },
 
     {
-      id: 'aq2', category: 'acoustics', type: 'audio',
-      media: {
-        en: 'https://upload.wikimedia.org/wikipedia/commons/e/e3/Humpback_Whale_song.ogg',
-        fr: 'https://upload.wikimedia.org/wikipedia/commons/e/e3/Humpback_Whale_song.ogg',
-      },
+      id: 'q02', type: 'audio',
+      media: 'https://upload.wikimedia.org/wikipedia/commons/e/e3/Humpback_Whale_song.ogg',
       question: {
         en: 'This recording features a long, complex vocal sequence. Which species is known for this behaviour?',
         fr: 'Cet enregistrement présente une longue séquence vocale complexe. Quelle espèce est connue pour ce comportement ?',
@@ -89,8 +125,7 @@ const Questions = (() => {
     },
 
     {
-      id: 'aq3', category: 'acoustics', type: 'audio',
-      media: { en: null, fr: null },
+      id: 'q03', type: 'text',
       question: {
         en: 'Seismic airgun arrays are used in ocean floor surveys. What is their primary acoustic characteristic?',
         fr: 'Les canons à air sismiques sont utilisés dans les relevés du fond océanique. Quelle est leur principale caractéristique acoustique ?',
@@ -107,8 +142,7 @@ const Questions = (() => {
     },
 
     {
-      id: 'aq4', category: 'acoustics', type: 'audio',
-      media: { en: null, fr: null },
+      id: 'q04', type: 'text',
       question: {
         en: 'Sperm whales use bio-sonar clicks for echolocation. In which frequency range do these clicks primarily fall?',
         fr: 'Les cachalots utilisent des clics de bio-sonar pour l\'écholocation. Dans quelle plage de fréquences se situent-ils ?',
@@ -124,15 +158,9 @@ const Questions = (() => {
       },
     },
 
-    /* ══════════════════════════════════════════════════════
-       VISUAL
-       ══════════════════════════════════════════════════════ */
     {
-      id: 'vq1', category: 'visual', type: 'image',
-      media: {
-        en: 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Call_spectrogram.png',
-        fr: 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Call_spectrogram.png',
-      },
+      id: 'q05', type: 'image',
+      media: 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Call_spectrogram.png',
       question: {
         en: 'Examine this spectrogram. The narrow band below 100 Hz with long duration is characteristic of which source?',
         fr: 'Examinez ce spectrogramme. La bande étroite en dessous de 100 Hz avec une longue durée est caractéristique de quelle source ?',
@@ -149,8 +177,7 @@ const Questions = (() => {
     },
 
     {
-      id: 'vq2', category: 'visual', type: 'image',
-      media: { en: null, fr: null },
+      id: 'q06', type: 'text',
       question: {
         en: 'On a dolphin echolocation spectrogram, the clicks appear as vertical broadband striations. What does the spacing between them indicate?',
         fr: 'Sur un spectrogramme d\'écholocation de dauphin, les clics forment des stries verticales. Qu\'indique l\'espacement entre elles ?',
@@ -167,8 +194,7 @@ const Questions = (() => {
     },
 
     {
-      id: 'vq3', category: 'visual', type: 'image',
-      media: { en: null, fr: null },
+      id: 'q07', type: 'text',
       question: {
         en: 'Ship propeller cavitation appears on a spectrogram as a broadband hum with harmonics. At roughly what fundamental frequency for large cargo vessels?',
         fr: 'La cavitation d\'hélice apparaît sur un spectrogramme comme un bourdonnement avec des harmoniques. À quelle fréquence fondamentale pour les grands navires cargo ?',
@@ -185,8 +211,7 @@ const Questions = (() => {
     },
 
     {
-      id: 'vq4', category: 'visual', type: 'image',
-      media: { en: null, fr: null },
+      id: 'q08', type: 'text',
       question: {
         en: 'A T-phase (tertiary phase) on a hydrophone spectrogram arrives after P and S waves. Through which medium does it propagate?',
         fr: 'Une phase T sur un spectrogramme d\'hydrophone arrive après les ondes P et S. Par quel milieu se propage-t-elle ?',
@@ -202,16 +227,15 @@ const Questions = (() => {
       },
     },
 
-         {
-      id: 'vq5', category: 'visual', type: 'image',
-      media: { en: 'assets/images/bottlenosedolphin_1.png', 
-              fr: 'assets/images/bottlenosedolphin_1.png'},
+    {
+      id: 'q09', type: 'image',
+      media: 'assets/images/bottlenosedolphin_1.png',
       question: {
-        en: 'Look at the spectrogram. Which animal produces this sound ?',
+        en: 'Look at the spectrogram. Which animal produces this sound?',
         fr: 'Regardez le spectrogramme. Quel animal émet ce son ?',
       },
       options: {
-        en: ['A. Humpback whale', 'B. Tiger shark', 'C. Bottlenose dolphin', 'D. Albatros'],
+        en: ['A. Humpback whale', 'B. Tiger shark', 'C. Bottlenose dolphin', 'D. Albatross'],
         fr: ['A. Baleine à bosse', 'B. Requin tigre', 'C. Grand dauphin', 'D. Albatros'],
       },
       correct: 2,
@@ -221,15 +245,9 @@ const Questions = (() => {
       },
     },
 
-    /* ══════════════════════════════════════════════════════
-       WAVE PROPAGATION
-       ══════════════════════════════════════════════════════ */
     {
-      id: 'wq1', category: 'wave', type: 'diagram',
-      media: {
-        en: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/SOFAR_channel.svg/800px-SOFAR_channel.svg.png',
-        fr: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/SOFAR_channel.svg/800px-SOFAR_channel.svg.png',
-      },
+      id: 'q10', type: 'image',
+      media: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/SOFAR_channel.svg/800px-SOFAR_channel.svg.png',
       question: {
         en: 'The diagram shows a sound-speed profile with a distinct minimum at depth. What phenomenon does this minimum create?',
         fr: 'Le diagramme montre un profil de vitesse du son avec un minimum à une certaine profondeur. Quel phénomène ce minimum crée-t-il ?',
@@ -246,11 +264,8 @@ const Questions = (() => {
     },
 
     {
-      id: 'wq2', category: 'wave', type: 'diagram',
-      media: {
-        en: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Seismic_waves.svg/800px-Seismic_waves.svg.png',
-        fr: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Seismic_waves.svg/800px-Seismic_waves.svg.png',
-      },
+      id: 'q11', type: 'image',
+      media: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Seismic_waves.svg/800px-Seismic_waves.svg.png',
       question: {
         en: 'Looking at the seismic wave diagram, which wave type travels only along the Earth\'s surface and cannot propagate through the deep ocean interior?',
         fr: 'Dans ce diagramme des ondes sismiques, quel type d\'onde se propage uniquement en surface et ne peut pas traverser les profondeurs de l\'océan ?',
@@ -267,8 +282,7 @@ const Questions = (() => {
     },
 
     {
-      id: 'wq3', category: 'wave', type: 'diagram',
-      media: { en: null, fr: null },
+      id: 'q12', type: 'text',
       question: {
         en: 'In the open ocean, sound speed increases with depth below the SOFAR axis primarily because of which factor?',
         fr: 'Dans l\'océan ouvert, la vitesse du son augmente avec la profondeur sous l\'axe SOFAR principalement en raison de quel facteur ?',
@@ -285,8 +299,7 @@ const Questions = (() => {
     },
 
     {
-      id: 'wq4', category: 'wave', type: 'diagram',
-      media: { en: null, fr: null },
+      id: 'q13', type: 'text',
       question: {
         en: 'A convergence zone (CZ) is a region of elevated sound intensity at the ocean surface. Approximately how far is the first CZ in typical North Atlantic conditions?',
         fr: 'Une zone de convergence (ZC) est une région d\'intensité sonore élevée en surface. À quelle distance se situe la première ZC en Atlantique Nord ?',
@@ -302,7 +315,10 @@ const Questions = (() => {
       },
     },
 
+    /* ▼▼▼  PASTE YOUR NEW QUESTIONS HERE (above this line)  ▼▼▼ */
+
   ]; // ← end of question list — add new questions above this line
+
 
   /* ── Helpers ───────────────────────────────────────────── */
   function shuffle(arr) {
@@ -314,24 +330,60 @@ const Questions = (() => {
     return a;
   }
 
-  function getByCategory(cat) {
-    return all.filter(q => q.category === cat);
+  /* Media path for a language. `media` may be a single string
+     (used for both languages) or { en: '…', fr: '…' }.           */
+  function getMedia(q, lang) {
+    if (!q.media) return null;
+    if (typeof q.media === 'string') return q.media;
+    return q.media[lang] || q.media.en || q.media.fr || null;
   }
+
+  /* A question is playable only if the essentials are present. */
+  function isPlayable(q) {
+    return ['en', 'fr'].every(l =>
+      q && q.question && q.question[l] &&
+      q.options && Array.isArray(q.options[l]) && q.options[l].length >= 2
+    ) && Number.isInteger(q.correct) && q.correct >= 0 && q.correct < q.options.en.length;
+  }
+
+  /* Console warnings (F12) to help you spot mistakes when editing. */
+  function validate() {
+    const seen = new Set();
+    all.forEach((q, i) => {
+      const tag = `[OceanQuiz] Question #${i + 1} (${(q && q.id) || 'no id'})`;
+      if (q && q.id) {
+        if (seen.has(q.id)) console.warn(`${tag}: duplicate id`);
+        seen.add(q.id);
+      }
+      if (!isPlayable(q)) {
+        console.warn(`${tag}: SKIPPED — check question/options in both languages and that "correct" is a valid 0-based index.`);
+        return;
+      }
+      if (q.options.en.length !== q.options.fr.length)
+        console.warn(`${tag}: EN and FR have a different number of options.`);
+      if (!q.explanation || !q.explanation.en || !q.explanation.fr)
+        console.warn(`${tag}: explanation missing in EN or FR.`);
+      if (q.type && q.type !== 'text' && !getMedia(q, 'en'))
+        console.warn(`${tag}: type is "${q.type}" but no "media" path is given.`);
+    });
+    const n = all.filter(isPlayable).length;
+    LEVEL_ORDER.forEach(l => {
+      if (LEVELS[l] && n < LEVELS[l].questions)
+        console.info(`[OceanQuiz] Level "${l}" asks for ${LEVELS[l].questions} questions but only ${n} are available — all ${n} will be used.`);
+    });
+  }
+  validate();
 
   /* ── Public API ────────────────────────────────────────── */
-  function getQuestions(category) {
-    if (category === 'mixed') {
-      // Take up to QUESTIONS_MIXED_PER_CAT from each category, then shuffle all
-      const cats = ['acoustics', 'visual', 'wave'];
-      const picked = cats.flatMap(c =>
-        shuffle(getByCategory(c)).slice(0, QUESTIONS_MIXED_PER_CAT)
-      );
-      return shuffle(picked);
-    }
-    // Take up to QUESTIONS_PER_CATEGORY randomly; if pool is smaller, use all
-    return shuffle(getByCategory(category)).slice(0, QUESTIONS_PER_CATEGORY);
+  function poolSize() { return all.filter(isPlayable).length; }
+
+  /* Random selection for a level (different every game). */
+  function getQuestions(level) {
+    const cfg = LEVELS[level];
+    const n = cfg ? cfg.questions : poolSize();
+    return shuffle(all.filter(isPlayable)).slice(0, n);
   }
 
-  return { getQuestions, getByCategory };
+  return { getQuestions, getMedia, poolSize };
 
 })();
