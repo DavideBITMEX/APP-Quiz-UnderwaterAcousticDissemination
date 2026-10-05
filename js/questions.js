@@ -122,7 +122,7 @@ const Questions = (() => {
       id: 's01', type: 'audio', shuffle: true,
       media: snd('Humpback_whale-1'),   // or the web version: 'https://dosits.org/wp-content/uploads/2016/11/Hump1.mp3'
       // ▼ EXAMPLE of an image shown together with the explanation (file goes in assets/images/):
-      explanationImage: 'assets/images/humpback-whale.jpg',
+      explanationImage: 'assets/images/humpback.png',
       // explanationImageCredit: '© Photo: …',    // optional small credit under the picture
       question: {
         en: 'What produces this sound?',
