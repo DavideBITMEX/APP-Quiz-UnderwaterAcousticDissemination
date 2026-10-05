@@ -61,7 +61,8 @@ const App = (() => {
     I18n.setLang(next);
     localStorage.setItem(LS_LANG, next);
     updateLangBtn();
-    render();
+    stopAudio();
+    render(true);                       // true = keep the scroll position
   }
   function updateLangBtn() {
     const btn = document.getElementById('lang-btn');
@@ -148,8 +149,25 @@ const App = (() => {
   }
 
   /* ── Quiz interaction ──────────────────────────────────── */
+  /* HTML of the feedback box and of the Next button — used right after answering
+     AND when the screen is redrawn (e.g. language switched after answering). */
+  function feedbackHtml(q, correct, lang) {
+    const exp = q.explanation && q.explanation[lang];
+    return `
+      <div class="feedback ${correct ? 'correct' : 'wrong'}">
+        <div class="fb-label">${correct ? I18n.t('feedback_correct') : I18n.t('feedback_wrong')}</div>
+        <div class="fb-answer">${I18n.t('answer_label')} <strong>${escHtml(stripLetter(q.options[lang][q.correct]))}</strong></div>
+        ${exp ? `<div class="fb-exp">${escHtml(exp)}</div>` : ''}
+        ${explanationFigure(q, lang)}
+      </div>`;
+  }
+  function nextButtonHtml() {
+    const last = state.qIndex === state.questions.length - 1;
+    return `<button class="btn btn-primary" onclick="App.nextQuestion()">${last ? I18n.t('btn_finish') : I18n.t('btn_next')}</button>`;
+  }
+
   function selectOption(idx) {
-    if (document.querySelector('.opt.correct, .opt.wrong')) return;   // already answered
+    if (state.answers.length > state.qIndex) return;      // this question is already answered
     stopAudio();
 
     const q       = state.questions[state.qIndex];
@@ -166,23 +184,11 @@ const App = (() => {
       else if (i === idx && !correct) el.classList.add('wrong');
     });
 
-    const lang = I18n.getLang();
-    const exp  = q.explanation && q.explanation[lang];
-    const fb   = document.getElementById('feedback');
-    if (fb) {
-      fb.innerHTML = `
-        <div class="feedback ${correct ? 'correct' : 'wrong'}">
-          <div class="fb-label">${correct ? I18n.t('feedback_correct') : I18n.t('feedback_wrong')}</div>
-          <div class="fb-answer">${I18n.t('answer_label')} <strong>${escHtml(stripLetter(q.options[lang][q.correct]))}</strong></div>
-          ${exp ? `<div class="fb-exp">${escHtml(exp)}</div>` : ''}
-          ${explanationFigure(q, lang)}
-        </div>`;
-      fb.style.display = 'block';
-    }
+    const fb = document.getElementById('feedback');
+    if (fb) { fb.innerHTML = feedbackHtml(q, correct, I18n.getLang()); fb.style.display = 'block'; }
 
-    const last = state.qIndex === state.questions.length - 1;
-    const nw   = document.getElementById('next-wrap');
-    if (nw) nw.innerHTML = `<button class="btn btn-primary" onclick="App.nextQuestion()">${last ? I18n.t('btn_finish') : I18n.t('btn_next')}</button>`;
+    const nw = document.getElementById('next-wrap');
+    if (nw) nw.innerHTML = nextButtonHtml();
 
     const sp = document.getElementById('score-pill');
     if (sp) sp.textContent = `${I18n.t('score_label')}: ${state.score}`;
@@ -220,7 +226,7 @@ const App = (() => {
   }
 
   /* ── Render dispatcher ─────────────────────────────────── */
-  function render() {
+  function render(keepScroll) {
     const app = document.getElementById('app');
     if (!app) return;
     switch (state.screen) {
@@ -231,7 +237,7 @@ const App = (() => {
       case 'result':      app.innerHTML = renderResult();      break;
       case 'leaderboard': app.innerHTML = renderLeaderboard(); break;
     }
-    window.scrollTo(0, 0);
+    if (!keepScroll) window.scrollTo(0, 0);
   }
 
   /* ─────────────────────────────────────────────────────────
@@ -330,11 +336,21 @@ const App = (() => {
     const pct  = Math.round((num - 1) / tot * 100);
     const lvl  = LEVELS[state.level];
 
-    const opts = q.options[lang].map((opt, i) => `
-      <button class="opt" onclick="App.selectOption(${i})">
+    const done = state.answers[state.qIndex];      // already answered? (e.g. language switched afterwards)
+
+    const opts = q.options[lang].map((opt, i) => {
+      let cls = '', lock = '';
+      if (done) {
+        lock = ' style="pointer-events:none"';
+        if (i === q.correct)                     cls = ' correct';
+        else if (i === done.chosen && !done.correct) cls = ' wrong';
+      }
+      return `
+      <button class="opt${cls}"${lock} onclick="App.selectOption(${i})">
         <span class="opt-letter">${LETTERS[i]}</span>
         <span>${escHtml(stripLetter(opt))}</span>
-      </button>`).join('');
+      </button>`;
+    }).join('');
 
     return `
       <div class="quiz-screen">
@@ -353,8 +369,8 @@ const App = (() => {
           ${renderMedia(q, lang)}
           <p class="q-text">${escHtml(q.question[lang])}</p>
           <div class="options">${opts}</div>
-          <div id="feedback" style="display:none"></div>
-          <div id="next-wrap" class="next-wrap"></div>
+          <div id="feedback" style="display:${done ? 'block' : 'none'}">${done ? feedbackHtml(q, done.correct, lang) : ''}</div>
+          <div id="next-wrap" class="next-wrap">${done ? nextButtonHtml() : ''}</div>
           ${sourcesNote()}
         </div>
       </div>`;
