@@ -14,7 +14,7 @@
    (e.g. Easy 5 × 10 = 50  ·  Medium 10 × 15 = 150  ·  Pro 15 × 20 = 300)
    Harder levels give more questions AND more points per answer,
    so a good Pro run always ranks above a good Easy run on the leaderboard.
-   ============================================================ */
+   ============================================================ */  
 
 const LEVELS = {
   easy:   { questions:  5, pointsPerQuestion: 10, minutes: 2, icon: '🐟' },
