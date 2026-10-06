@@ -198,8 +198,8 @@ const Questions = (() => {
       },
       correct: 0,
       explanation: {
-        en: 'In the past, blue whales used to communicate with one another across entire oceans. Today, the distance over which these whales can hear one another has fallen by 90 per cent due to rising levels of man-made noise.',
-        fr: 'Autrefois, les baleines bleues pouvaient communiquer entre elles à travers des océans entiers. Aujourd\'hui, la distance sur laquelle elles peuvent s\'entendre a chuté de 90 % en raison de l\'augmentation du bruit d\'origine humaine.',
+        en: 'In a quiet ocean, the calls of blue whales can travel across huge distances. In busy shipping areas, rising man-made noise can cut the distance over which whales hear each other by as much as 90 per cent.',
+        fr: 'Dans un océan calme, les appels des baleines bleues peuvent se propager sur de très grandes distances. Dans les zones de fort trafic maritime, l\'augmentation du bruit d\'origine humaine peut réduire jusqu\'à 90 % la distance sur laquelle les baleines s\'entendent.',
       },
     },
 
