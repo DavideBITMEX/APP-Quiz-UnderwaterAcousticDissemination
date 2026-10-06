@@ -688,8 +688,8 @@ const Questions = (() => {
       },
       correct: 0,
       explanation: {
-        en: 'Undersea earthquakes release low-pitched sounds called T waves. They travel through the SOFAR channel, a natural layer about 1 km deep where sound is trapped and can cross thousands of kilometres with very little loss. Networks of hydrophones can therefore detect earthquakes — even small ones — that land stations miss.',
-        fr: 'Les séismes sous-marins libèrent des sons graves appelés ondes T. Elles se propagent dans le canal SOFAR, une couche naturelle située vers 1 km de profondeur où le son reste piégé et peut parcourir des milliers de kilomètres avec très peu de pertes. Des réseaux d\'hydrophones peuvent ainsi détecter des séismes — même petits — que les stations terrestres ne perçoivent pas.',
+        en: 'Undersea earthquakes shake the seafloor, and part of that energy is converted into low-pitched sounds in the water, called T waves. These sounds are trapped in the SOFAR channel, a natural layer about 1 km deep at mid-latitudes where sound can travel thousands of kilometres with very little loss. In remote ocean areas such as mid-ocean ridges, networks of hydrophones can therefore detect earthquakes much smaller than the ones that land stations can pick up.',
+        fr: 'Les séismes sous-marins font trembler le fond de l\'océan, et une partie de cette énergie est convertie en sons graves dans l\'eau, appelés ondes T. Ces sons restent piégés dans le canal SOFAR, une couche naturelle située vers 1 km de profondeur aux latitudes moyennes, où le son peut parcourir des milliers de kilomètres avec très peu de pertes. Dans les zones océaniques isolées, comme les dorsales médio-océaniques, des réseaux d\'hydrophones peuvent ainsi détecter des séismes bien plus petits que ceux que perçoivent les stations terrestres.',
       },
     },
 
