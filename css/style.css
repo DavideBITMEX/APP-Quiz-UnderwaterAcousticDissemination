@@ -13,7 +13,7 @@
 :root {
   --f-display: 'Space Grotesk', sans-serif;
   --f-body:    'DM Sans', sans-serif;
-  --header-h: 62px;
+  --header-h: 80px;
   --footer-h: 70px;
   --r: 16px;
   --rs: 10px;
@@ -140,7 +140,7 @@ button { font-family: inherit; }
   backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
 }
 .hdr-logos { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-.hdr-logo  { height: 40px; width: auto; max-width: 90px; object-fit: contain; border-radius: 4px; }
+.hdr-logo  { height: 60px; width: auto; max-width: 160px; object-fit: contain; border-radius: 4px; }
 .hdr-center {
   flex: 1; min-width: 0; text-align: center;
   display: flex; flex-direction: column; gap: 1px; overflow: hidden;
