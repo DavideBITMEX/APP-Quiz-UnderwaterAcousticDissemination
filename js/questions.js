@@ -143,6 +143,7 @@ const Questions = (() => {
     {
       id: 's02', type: 'audio', shuffle: true,
       media: snd('croaker'),
+      explanationImage: 'assets/images/atlantic_croaker.png',
       question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
       options: {
         en: ['Atlantic croaker', 'Shrimp', 'Drum (instrument)', 'Toadfish'],
@@ -205,6 +206,7 @@ const Questions = (() => {
     {
       id: 's06', type: 'audio', shuffle: true,
       media: snd('Barred_grunt'),
+      explanationImage: 'assets/images/burredgrunt.jpg',
       question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
       options: {
         en: ['Barred grunt', 'Woodpecker', 'Walrus', 'Hammer'],
@@ -220,6 +222,7 @@ const Questions = (() => {
     {
       id: 's07', type: 'audio', shuffle: true,
       media: snd('lights'),
+      explanationImage: 'assets/images/lightning.jpg',
       question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
       options: {
         en: ['Lightning', 'Jet ski', 'Sonar', 'Blue whale'],
@@ -283,6 +286,7 @@ const Questions = (() => {
     {
       id: 's11', type: 'audio', shuffle: true,
       media: snd('Sound 1 - Fish (trumpeter perch)'),
+      explanationImage: 'assets/images/trumpeter.jpg',
       question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
       options: {
         en: ['Trumpeter perch', 'Trumpet', 'Holocentrus rufus', 'Sonar'],
@@ -298,6 +302,7 @@ const Questions = (() => {
     {
       id: 's12', type: 'audio', shuffle: true,
       media: snd('Sound 2 - Sea lion (calls from a female sea lion for her pup)'),
+      explanationImage: 'assets/images/sealion.jpg',
       question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
       options: {
         en: ['Sea lion', 'Whale', 'Dolphin', 'Pinhead pearlfish'],
@@ -313,6 +318,7 @@ const Questions = (() => {
     {
       id: 's13', type: 'audio', shuffle: true,
       media: snd('Earthquake'),
+      explanationImage: 'assets/images/earthquake2.png',
       question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
       options: {
         en: ['Earthquake', 'Container ship', 'Blue whale', 'Lightning'],
@@ -376,6 +382,7 @@ const Questions = (() => {
     {
       id: 's18', type: 'audio', shuffle: true,
       media: snd('Sonar'),
+       explanationImage: 'assets/images/sonar.png',
       question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
       options: {
         en: ['Sonar', 'Fishing boat', 'Dolphin', 'Walrus'],
@@ -418,7 +425,7 @@ const Questions = (() => {
 
     {
       id: 'g01', type: 'text', shuffle: true,
-      explanationImage: 'assets/images/speed-of-sound.png',     // IDEA: infographic — speed of sound in air / water / steel
+      explanationImage: 'assets/images/soundspeed.jpg',     // IDEA: infographic — speed of sound in air / water / steel
       question: {
         en: 'Sound travels much faster in water than in air. About how many times faster?',
         fr: 'Le son se propage beaucoup plus vite dans l\'eau que dans l\'air. Environ combien de fois plus vite ?',
@@ -598,7 +605,7 @@ const Questions = (() => {
 
     {
       id: 'g11', type: 'text', shuffle: true,
-      explanationImage: 'assets/images/hearing-ranges.png',     // IDEA: chart of hearing ranges (human, blue whale, dolphin…)
+      explanationImage: 'assets/images/hearing-ranges.jpg',     // IDEA: chart of hearing ranges (human, blue whale, dolphin…)
       question: {
         en: 'Blue whales call at pitches so low that we can hardly hear them. What are sounds too low for human ears called?',
         fr: 'Les baleines bleues émettent des sons si graves que nous les entendons à peine. Comment appelle-t-on les sons trop graves pour l\'oreille humaine ?',
@@ -616,7 +623,7 @@ const Questions = (() => {
 
     {
       id: 'g12', type: 'text', shuffle: true,
-      explanationImage: 'assets/images/tsunami-formation.png',  // IDEA: diagram showing how a seafloor earthquake creates a tsunami
+      explanationImage: 'assets/images/tsunami.jpg',  // IDEA: diagram showing how a seafloor earthquake creates a tsunami
       question: {
         en: 'What most often causes a tsunami?',
         fr: 'Quelle est la cause la plus fréquente d\'un tsunami ?',
@@ -658,8 +665,8 @@ const Questions = (() => {
         fr: 'Lorsqu\'un séisme se produit, quelles ondes atteignent un sismomètre en premier ?',
       },
       options: {
-        en: ['P waves (primary waves)', 'S waves (secondary waves)', 'Surface waves', 'Tsunami waves'],
-        fr: ['Les ondes P (primaires)', 'Les ondes S (secondaires)', 'Les ondes de surface', 'Les vagues de tsunami'],
+        en: ['P waves', 'S waves', 'Surface waves', 'Tsunami waves'],
+        fr: ['Les ondes P', 'Les ondes S', 'Les ondes de surface', 'Les vagues de tsunami'],
       },
       correct: 0,
       explanation: {
