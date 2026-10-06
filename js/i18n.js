@@ -10,7 +10,7 @@ const I18n = (() => {
     /* ════════════════════════ ENGLISH ════════════════════════ */
     en: {
       /* ── App ── */
-      app_title:    'OceanQuiz',
+      app_title:    'AcoustiQuiz',
       app_subtitle: 'Underwater Acoustics & Bioacoustics',
 
       /* ── Home (activity hub) ── */
@@ -88,7 +88,7 @@ const I18n = (() => {
     /* ════════════════════════ FRANÇAIS ════════════════════════ */
     fr: {
       /* ── App ── */
-      app_title:    'OceanQuiz',
+      app_title:    'AcoustiQuiz',
       app_subtitle: 'Acoustique sous-marine & Bioacoustique',
 
       /* ── Accueil ── */
