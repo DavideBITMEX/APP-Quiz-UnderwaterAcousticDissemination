@@ -210,12 +210,12 @@ const Questions = (() => {
       question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
       options: {
         en: ['Barred grunt', 'Woodpecker', 'Walrus', 'Hammer'],
-        fr: ['Barred grunt', 'Pic', 'Morse', 'Marteau'],
+        fr: ['Cagna rayée', 'Pic', 'Morse', 'Marteau'],
       },
       correct: 0,
       explanation: {
         en: 'The barred grunt has teeth in the throat and gill regions; the rubbing of these teeth produces a sound that is amplified by its swim bladder.',
-        fr: 'Le barred grunt possède des dents dans la gorge et la région des branchies ; le frottement de ces dents produit un son amplifié par sa vessie natatoire.',
+        fr: 'Le cagna rayée possède des dents dans la gorge et la région des branchies ; le frottement de ces dents produit un son amplifié par sa vessie natatoire.',
       },
     },
 
@@ -258,7 +258,7 @@ const Questions = (() => {
       question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
       options: {
         en: ['Toadfish', 'Goby', 'Pinhead pearlfish', 'Barred grunt'],
-        fr: ['Poisson-crapaud', 'Gobie', 'Poisson-perle', 'Barred grunt'],
+        fr: ['Poisson-crapaud', 'Gobie', 'Poisson-perle', 'Cagna rayée'],
       },
       correct: 0,
       explanation: {
