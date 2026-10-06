@@ -206,7 +206,7 @@ const Questions = (() => {
     {
       id: 's06', type: 'audio', shuffle: true,
       media: snd('Barred_grunt'),
-      explanationImage: 'assets/images/burredgrunt.jpg',
+      explanationImage: 'assets/images/barredgrunt.jpg',
       question: { en: 'What produces this sound?', fr: 'Qu\'est-ce qui produit ce son ?' },
       options: {
         en: ['Barred grunt', 'Woodpecker', 'Walrus', 'Hammer'],
@@ -697,20 +697,21 @@ const Questions = (() => {
        SPECTROGRAM QUESTION
        ══════════════════════════════════════════════════════════ */
     {
-      id: 'q09', type: 'image',
+      id: 'q09', type: 'image', shuffle: true,
       media: 'assets/images/bottlenosedolphin_1.png',
+      explanationImage: 'assets/images/sarasota.png',
       question: {
-        en: 'Look at the spectrogram. Which animal produces this sound?',
-        fr: 'Regardez le spectrogramme. Quel animal émet ce son ?',
+        en: 'What are we looking at here?',
+        fr: 'Que voyons-nous ici ?',
       },
       options: {
-        en: ['A. Humpback whale', 'B. Tiger shark', 'C. Bottlenose dolphin', 'D. Albatross'],
-        fr: ['A. Baleine à bosse', 'B. Requin tigre', 'C. Grand dauphin', 'D. Albatros'],
+        en: ['A spectrogram showing a dolphin vocalization', 'A map showing the trajectory of a ship', 'A graph of the water temperature over a day', 'A seismogram showing an earthquake'],
+        fr: ['Un spectrogramme montrant une vocalisation de dauphin', 'Une carte montrant la trajectoire d\'un bateau', 'Un graphique de la température de l\'eau au cours d\'une journée', 'Un sismogramme montrant un séisme'],
       },
-      correct: 2,
+      correct: 0,
       explanation: {
-        en: 'Bottlenose dolphins produce so-called "signature whistles" — individual-specific calls they use to identify themselves to other members of their group.',
-        fr: 'Les grands dauphins produisent ce qu\'on appelle des "sifflements signature" — des vocalisations propres à chaque individu, utilisées pour se faire reconnaître au sein de leur groupe.',
+        en: 'This picture is a spectrogram, a kind of "photo" of a sound: time runs from left to right, pitch goes from low (bottom) to high (top), and brightness shows how loud the sound is. Here we see the whistles of a bottlenose dolphin. Bottlenose dolphins produce so-called "signature whistles": each individual has its own, a bit like a name, which it uses to introduce itself and to call other members of its group. Studies show that dolphins react when they hear their own signature whistle.',
+        fr: 'Cette image est un spectrogramme, une sorte de « photo » d\'un son : le temps s\'écoule de gauche à droite, la hauteur du son va du grave (en bas) à l\'aigu (en haut), et la luminosité indique l\'intensité. On y voit les sifflements d\'un grand dauphin. Les grands dauphins produisent ce qu\'on appelle des « sifflements signature » : chaque individu possède le sien, un peu comme un prénom, qu\'il utilise pour se présenter et pour appeler les autres membres de son groupe. Des études montrent que les dauphins réagissent lorsqu\'ils entendent leur propre sifflement signature.',
       },
     },
 
